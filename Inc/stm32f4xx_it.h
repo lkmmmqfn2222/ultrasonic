@@ -28,7 +28,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "stm32f405xx.h"
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/

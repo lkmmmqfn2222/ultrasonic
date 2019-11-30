@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccQti47c.s 			page 1
+ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccem4Hvt.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccQti47c.s 			page 1
   29:Src/main.c    **** /* USER CODE BEGIN Includes */
   30:Src/main.c    **** #include "myprintf.h"
   31:Src/main.c    **** #include "test.h"
-ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccQti47c.s 			page 2
+ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccem4Hvt.s 			page 2
 
 
   32:Src/main.c    **** /* USER CODE END Includes */
@@ -101,7 +101,7 @@ ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccQti47c.s 			page 1
   69:Src/main.c    **** int main(void)
   70:Src/main.c    **** {
   71:Src/main.c    ****   /* USER CODE BEGIN 1 */
-  72:Src/main.c    ****   
+  72:Src/main.c    ****   uint8_t printfCnt = 0;
   73:Src/main.c    ****   /* USER CODE END 1 */
   74:Src/main.c    ****   
   75:Src/main.c    **** 
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccQti47c.s 			page 1
   86:Src/main.c    ****   SystemClock_Config();
   87:Src/main.c    **** 
   88:Src/main.c    ****   /* USER CODE BEGIN SysInit */
-ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccQti47c.s 			page 3
+ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccem4Hvt.s 			page 3
 
 
   89:Src/main.c    **** 
@@ -129,10 +129,10 @@ ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccQti47c.s 			page 1
   94:Src/main.c    ****   MX_USART1_UART_Init();
   95:Src/main.c    ****   MX_DMA_Init();
   96:Src/main.c    ****   MX_TIM1_Init();
-  97:Src/main.c    ****   MX_TIM14_Init();
-  98:Src/main.c    ****   /* USER CODE BEGIN 2 */
-  99:Src/main.c    ****   uint8_t i = 0;
- 100:Src/main.c    ****   extern ULTRASONIC myUltrasonic;
+  97:Src/main.c    ****   /* USER CODE BEGIN 2 */
+  98:Src/main.c    ****   uint8_t i = 0;
+  99:Src/main.c    ****   extern ULTRASONIC myUltrasonic;
+ 100:Src/main.c    ****   //HAL_NVIC_DisableIRQ(EXTI15_10_IRQn);
  101:Src/main.c    ****   /* USER CODE END 2 */
  102:Src/main.c    **** 
  103:Src/main.c    ****   /* Infinite loop */
@@ -142,24 +142,25 @@ ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccQti47c.s 			page 1
  107:Src/main.c    ****     /* USER CODE END WHILE */
  108:Src/main.c    **** 
  109:Src/main.c    ****     /* USER CODE BEGIN 3 */
- 110:Src/main.c    ****     //uint32_t timCnt = __HAL_TIM_GET_COUNTER(&htim1);
- 111:Src/main.c    ****     //myPrint("test program: %d %d\r\n",i,timCnt);
- 112:Src/main.c    ****     //myPrint("printf 3.1415926 %f\r\n",3.1415926);
- 113:Src/main.c    ****     pwmTest();
- 114:Src/main.c    ****     myPrint("distance is %f \r\n",myUltrasonic.distance);
+ 110:Src/main.c    ****     pwmTest();
+ 111:Src/main.c    ****     if(printfCnt == 20){
+ 112:Src/main.c    ****       printfCnt = 0;
+ 113:Src/main.c    ****       myPrint("distance is %f \r\n",myUltrasonic.distance);
+ 114:Src/main.c    ****     }
  115:Src/main.c    ****     HAL_Delay(20);
  116:Src/main.c    ****     i++;
- 117:Src/main.c    ****   }
- 118:Src/main.c    ****   /* USER CODE END 3 */
- 119:Src/main.c    **** }
- 120:Src/main.c    **** 
- 121:Src/main.c    **** /**
- 122:Src/main.c    ****   * @brief System Clock Configuration
- 123:Src/main.c    ****   * @retval None
- 124:Src/main.c    ****   */
- 125:Src/main.c    **** void SystemClock_Config(void)
- 126:Src/main.c    **** {
-  28              		.loc 1 126 0
+ 117:Src/main.c    ****     printfCnt++;
+ 118:Src/main.c    ****   }
+ 119:Src/main.c    ****   /* USER CODE END 3 */
+ 120:Src/main.c    **** }
+ 121:Src/main.c    **** 
+ 122:Src/main.c    **** /**
+ 123:Src/main.c    ****   * @brief System Clock Configuration
+ 124:Src/main.c    ****   * @retval None
+ 125:Src/main.c    ****   */
+ 126:Src/main.c    **** void SystemClock_Config(void)
+ 127:Src/main.c    **** {
+  28              		.loc 1 127 0
   29              		.cfi_startproc
   30              		@ args = 0, pretend = 0, frame = 80
   31              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -172,18 +173,18 @@ ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccQti47c.s 			page 1
   38 0002 95B0     		sub	sp, sp, #84
   39              	.LCFI1:
   40              		.cfi_def_cfa_offset 96
- 127:Src/main.c    ****   RCC_OscInitTypeDef RCC_OscInitStruct = {0};
-  41              		.loc 1 127 0
+ 128:Src/main.c    ****   RCC_OscInitTypeDef RCC_OscInitStruct = {0};
+  41              		.loc 1 128 0
   42 0004 3022     		movs	r2, #48
   43 0006 0021     		movs	r1, #0
   44 0008 08A8     		add	r0, sp, #32
+ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccem4Hvt.s 			page 4
+
+
   45 000a FFF7FEFF 		bl	memset
-ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccQti47c.s 			page 4
-
-
   46              	.LVL0:
- 128:Src/main.c    ****   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
-  47              		.loc 1 128 0
+ 129:Src/main.c    ****   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
+  47              		.loc 1 129 0
   48 000e 0024     		movs	r4, #0
   49 0010 0394     		str	r4, [sp, #12]
   50 0012 0494     		str	r4, [sp, #16]
@@ -191,11 +192,11 @@ ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccQti47c.s 			page 1
   52 0016 0694     		str	r4, [sp, #24]
   53 0018 0794     		str	r4, [sp, #28]
   54              	.LBB2:
- 129:Src/main.c    **** 
- 130:Src/main.c    ****   /** Configure the main internal regulator output voltage 
- 131:Src/main.c    ****   */
- 132:Src/main.c    ****   __HAL_RCC_PWR_CLK_ENABLE();
-  55              		.loc 1 132 0
+ 130:Src/main.c    **** 
+ 131:Src/main.c    ****   /** Configure the main internal regulator output voltage 
+ 132:Src/main.c    ****   */
+ 133:Src/main.c    ****   __HAL_RCC_PWR_CLK_ENABLE();
+  55              		.loc 1 133 0
   56 001a 0194     		str	r4, [sp, #4]
   57 001c 1C4B     		ldr	r3, .L3
   58 001e 1A6C     		ldr	r2, [r3, #64]
@@ -207,8 +208,8 @@ ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccQti47c.s 			page 1
   64 002e 019B     		ldr	r3, [sp, #4]
   65              	.LBE2:
   66              	.LBB3:
- 133:Src/main.c    ****   __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1);
-  67              		.loc 1 133 0
+ 134:Src/main.c    ****   __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1);
+  67              		.loc 1 134 0
   68 0030 0294     		str	r4, [sp, #8]
   69 0032 184B     		ldr	r3, .L3+4
   70 0034 1A68     		ldr	r2, [r3]
@@ -219,91 +220,91 @@ ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccQti47c.s 			page 1
   75 0042 0293     		str	r3, [sp, #8]
   76 0044 029B     		ldr	r3, [sp, #8]
   77              	.LBE3:
- 134:Src/main.c    ****   /** Initializes the CPU, AHB and APB busses clocks 
- 135:Src/main.c    ****   */
- 136:Src/main.c    ****   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
-  78              		.loc 1 136 0
+ 135:Src/main.c    ****   /** Initializes the CPU, AHB and APB busses clocks 
+ 136:Src/main.c    ****   */
+ 137:Src/main.c    ****   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
+  78              		.loc 1 137 0
   79 0046 0123     		movs	r3, #1
   80 0048 0893     		str	r3, [sp, #32]
- 137:Src/main.c    ****   RCC_OscInitStruct.HSEState = RCC_HSE_ON;
-  81              		.loc 1 137 0
+ 138:Src/main.c    ****   RCC_OscInitStruct.HSEState = RCC_HSE_ON;
+  81              		.loc 1 138 0
   82 004a 4FF48033 		mov	r3, #65536
   83 004e 0993     		str	r3, [sp, #36]
- 138:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
-  84              		.loc 1 138 0
+ 139:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
+  84              		.loc 1 139 0
   85 0050 0225     		movs	r5, #2
   86 0052 0E95     		str	r5, [sp, #56]
- 139:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
-  87              		.loc 1 139 0
+ 140:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
+  87              		.loc 1 140 0
   88 0054 4FF48003 		mov	r3, #4194304
   89 0058 0F93     		str	r3, [sp, #60]
- 140:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLM = 4;
-ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccQti47c.s 			page 5
+ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccem4Hvt.s 			page 5
 
 
-  90              		.loc 1 140 0
+ 141:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLM = 4;
+  90              		.loc 1 141 0
   91 005a 0423     		movs	r3, #4
   92 005c 1093     		str	r3, [sp, #64]
- 141:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLN = 168;
-  93              		.loc 1 141 0
+ 142:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLN = 168;
+  93              		.loc 1 142 0
   94 005e A822     		movs	r2, #168
   95 0060 1192     		str	r2, [sp, #68]
- 142:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;
-  96              		.loc 1 142 0
+ 143:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;
+  96              		.loc 1 143 0
   97 0062 1295     		str	r5, [sp, #72]
- 143:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLQ = 4;
-  98              		.loc 1 143 0
+ 144:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLQ = 4;
+  98              		.loc 1 144 0
   99 0064 1393     		str	r3, [sp, #76]
- 144:Src/main.c    ****   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
- 100              		.loc 1 144 0
+ 145:Src/main.c    ****   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
+ 100              		.loc 1 145 0
  101 0066 08A8     		add	r0, sp, #32
  102 0068 FFF7FEFF 		bl	HAL_RCC_OscConfig
  103              	.LVL1:
- 145:Src/main.c    ****   {
- 146:Src/main.c    ****     Error_Handler();
- 147:Src/main.c    ****   }
- 148:Src/main.c    ****   /** Initializes the CPU, AHB and APB busses clocks 
- 149:Src/main.c    ****   */
- 150:Src/main.c    ****   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
- 104              		.loc 1 150 0
+ 146:Src/main.c    ****   {
+ 147:Src/main.c    ****     Error_Handler();
+ 148:Src/main.c    ****   }
+ 149:Src/main.c    ****   /** Initializes the CPU, AHB and APB busses clocks 
+ 150:Src/main.c    ****   */
+ 151:Src/main.c    ****   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
+ 104              		.loc 1 151 0
  105 006c 0F23     		movs	r3, #15
  106 006e 0393     		str	r3, [sp, #12]
- 151:Src/main.c    ****                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
- 152:Src/main.c    ****   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
- 107              		.loc 1 152 0
+ 152:Src/main.c    ****                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
+ 153:Src/main.c    ****   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
+ 107              		.loc 1 153 0
  108 0070 0495     		str	r5, [sp, #16]
- 153:Src/main.c    ****   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
- 109              		.loc 1 153 0
+ 154:Src/main.c    ****   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
+ 109              		.loc 1 154 0
  110 0072 0594     		str	r4, [sp, #20]
- 154:Src/main.c    ****   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV4;
- 111              		.loc 1 154 0
+ 155:Src/main.c    ****   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV4;
+ 111              		.loc 1 155 0
  112 0074 4FF4A053 		mov	r3, #5120
  113 0078 0693     		str	r3, [sp, #24]
- 155:Src/main.c    ****   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV2;
- 114              		.loc 1 155 0
+ 156:Src/main.c    ****   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV2;
+ 114              		.loc 1 156 0
  115 007a 4FF48053 		mov	r3, #4096
  116 007e 0793     		str	r3, [sp, #28]
- 156:Src/main.c    **** 
- 157:Src/main.c    ****   if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_5) != HAL_OK)
- 117              		.loc 1 157 0
+ 157:Src/main.c    **** 
+ 158:Src/main.c    ****   if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_5) != HAL_OK)
+ 117              		.loc 1 158 0
  118 0080 0521     		movs	r1, #5
  119 0082 03A8     		add	r0, sp, #12
  120 0084 FFF7FEFF 		bl	HAL_RCC_ClockConfig
  121              	.LVL2:
- 158:Src/main.c    ****   {
- 159:Src/main.c    ****     Error_Handler();
- 160:Src/main.c    ****   }
- 161:Src/main.c    ****   /** Enables the Clock Security System 
- 162:Src/main.c    ****   */
- 163:Src/main.c    ****   HAL_RCC_EnableCSS();
- 122              		.loc 1 163 0
+ 159:Src/main.c    ****   {
+ 160:Src/main.c    ****     Error_Handler();
+ 161:Src/main.c    ****   }
+ 162:Src/main.c    ****   /** Enables the Clock Security System 
+ 163:Src/main.c    ****   */
+ 164:Src/main.c    ****   HAL_RCC_EnableCSS();
+ 122              		.loc 1 164 0
+ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccem4Hvt.s 			page 6
+
+
  123 0088 FFF7FEFF 		bl	HAL_RCC_EnableCSS
-ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccQti47c.s 			page 6
-
-
  124              	.LVL3:
- 164:Src/main.c    **** }
- 125              		.loc 1 164 0
+ 165:Src/main.c    **** }
+ 125              		.loc 1 165 0
  126 008c 15B0     		add	sp, sp, #84
  127              	.LCFI2:
  128              		.cfi_def_cfa_offset 12
@@ -331,157 +332,177 @@ ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccQti47c.s 			page 1
  151              		.cfi_startproc
  152              		@ args = 0, pretend = 0, frame = 0
  153              		@ frame_needed = 0, uses_anonymous_args = 0
- 154 0000 08B5     		push	{r3, lr}
+ 154 0000 10B5     		push	{r4, lr}
  155              	.LCFI3:
  156              		.cfi_def_cfa_offset 8
- 157              		.cfi_offset 3, -8
+ 157              		.cfi_offset 4, -8
  158              		.cfi_offset 14, -4
+ 159              	.LVL4:
   79:Src/main.c    **** 
- 159              		.loc 1 79 0
- 160 0002 FFF7FEFF 		bl	HAL_Init
- 161              	.LVL4:
+ 160              		.loc 1 79 0
+ 161 0002 FFF7FEFF 		bl	HAL_Init
+ 162              	.LVL5:
   86:Src/main.c    **** 
- 162              		.loc 1 86 0
- 163 0006 FFF7FEFF 		bl	SystemClock_Config
- 164              	.LVL5:
+ 163              		.loc 1 86 0
+ 164 0006 FFF7FEFF 		bl	SystemClock_Config
+ 165              	.LVL6:
   93:Src/main.c    ****   MX_USART1_UART_Init();
- 165              		.loc 1 93 0
- 166 000a FFF7FEFF 		bl	MX_GPIO_Init
- 167              	.LVL6:
+ 166              		.loc 1 93 0
+ 167 000a FFF7FEFF 		bl	MX_GPIO_Init
+ 168              	.LVL7:
   94:Src/main.c    ****   MX_DMA_Init();
- 168              		.loc 1 94 0
- 169 000e FFF7FEFF 		bl	MX_USART1_UART_Init
- 170              	.LVL7:
+ 169              		.loc 1 94 0
+ 170 000e FFF7FEFF 		bl	MX_USART1_UART_Init
+ 171              	.LVL8:
   95:Src/main.c    ****   MX_TIM1_Init();
- 171              		.loc 1 95 0
- 172 0012 FFF7FEFF 		bl	MX_DMA_Init
- 173              	.LVL8:
-  96:Src/main.c    ****   MX_TIM14_Init();
- 174              		.loc 1 96 0
-ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccQti47c.s 			page 7
+ 172              		.loc 1 95 0
+ 173 0012 FFF7FEFF 		bl	MX_DMA_Init
+ 174              	.LVL9:
+ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccem4Hvt.s 			page 7
 
 
- 175 0016 FFF7FEFF 		bl	MX_TIM1_Init
- 176              	.LVL9:
-  97:Src/main.c    ****   /* USER CODE BEGIN 2 */
- 177              		.loc 1 97 0
- 178 001a FFF7FEFF 		bl	MX_TIM14_Init
- 179              	.LVL10:
- 180              	.L6:
- 113:Src/main.c    ****     myPrint("distance is %f \r\n",myUltrasonic.distance);
- 181              		.loc 1 113 0 discriminator 1
- 182 001e FFF7FEFF 		bl	pwmTest
- 183              	.LVL11:
- 114:Src/main.c    ****     HAL_Delay(20);
- 184              		.loc 1 114 0 discriminator 1
- 185 0022 064B     		ldr	r3, .L8
- 186 0024 D868     		ldr	r0, [r3, #12]	@ float
- 187 0026 FFF7FEFF 		bl	__aeabi_f2d
- 188              	.LVL12:
- 189 002a 0246     		mov	r2, r0
- 190 002c 0B46     		mov	r3, r1
- 191 002e 0448     		ldr	r0, .L8+4
- 192 0030 FFF7FEFF 		bl	myPrint
- 193              	.LVL13:
+  96:Src/main.c    ****   /* USER CODE BEGIN 2 */
+ 175              		.loc 1 96 0
+ 176 0016 FFF7FEFF 		bl	MX_TIM1_Init
+ 177              	.LVL10:
+  72:Src/main.c    ****   /* USER CODE END 1 */
+ 178              		.loc 1 72 0
+ 179 001a 0024     		movs	r4, #0
+ 180 001c 04E0     		b	.L7
+ 181              	.LVL11:
+ 182              	.L6:
  115:Src/main.c    ****     i++;
- 194              		.loc 1 115 0 discriminator 1
- 195 0034 1420     		movs	r0, #20
- 196 0036 FFF7FEFF 		bl	HAL_Delay
- 197              	.LVL14:
- 198 003a F0E7     		b	.L6
- 199              	.L9:
- 200              		.align	2
- 201              	.L8:
- 202 003c 00000000 		.word	myUltrasonic
- 203 0040 00000000 		.word	.LC0
- 204              		.cfi_endproc
- 205              	.LFE133:
- 207              		.section	.text.Error_Handler,"ax",%progbits
- 208              		.align	1
- 209              		.global	Error_Handler
- 210              		.syntax unified
- 211              		.thumb
- 212              		.thumb_func
- 213              		.fpu fpv4-sp-d16
- 215              	Error_Handler:
- 216              	.LFB135:
- 165:Src/main.c    **** 
- 166:Src/main.c    **** /* USER CODE BEGIN 4 */
- 167:Src/main.c    **** 
- 168:Src/main.c    **** /* USER CODE END 4 */
- 169:Src/main.c    **** 
- 170:Src/main.c    **** /**
- 171:Src/main.c    ****   * @brief  This function is executed in case of error occurrence.
- 172:Src/main.c    ****   * @retval None
- 173:Src/main.c    ****   */
- 174:Src/main.c    **** void Error_Handler(void)
- 175:Src/main.c    **** {
- 217              		.loc 1 175 0
- 218              		.cfi_startproc
-ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccQti47c.s 			page 8
+ 183              		.loc 1 115 0
+ 184 001e 1420     		movs	r0, #20
+ 185 0020 FFF7FEFF 		bl	HAL_Delay
+ 186              	.LVL12:
+ 117:Src/main.c    ****   }
+ 187              		.loc 1 117 0
+ 188 0024 0134     		adds	r4, r4, #1
+ 189              	.LVL13:
+ 190 0026 E4B2     		uxtb	r4, r4
+ 191              	.LVL14:
+ 192              	.L7:
+ 110:Src/main.c    ****     if(printfCnt == 20){
+ 193              		.loc 1 110 0
+ 194 0028 FFF7FEFF 		bl	pwmTest
+ 195              	.LVL15:
+ 111:Src/main.c    ****       printfCnt = 0;
+ 196              		.loc 1 111 0
+ 197 002c 142C     		cmp	r4, #20
+ 198 002e F6D1     		bne	.L6
+ 199              	.LVL16:
+ 113:Src/main.c    ****     }
+ 200              		.loc 1 113 0
+ 201 0030 054B     		ldr	r3, .L9
+ 202 0032 D868     		ldr	r0, [r3, #12]	@ float
+ 203 0034 FFF7FEFF 		bl	__aeabi_f2d
+ 204              	.LVL17:
+ 205 0038 0246     		mov	r2, r0
+ 206 003a 0B46     		mov	r3, r1
+ 207 003c 0348     		ldr	r0, .L9+4
+ 208 003e FFF7FEFF 		bl	myPrint
+ 209              	.LVL18:
+ 112:Src/main.c    ****       myPrint("distance is %f \r\n",myUltrasonic.distance);
+ 210              		.loc 1 112 0
+ 211 0042 0024     		movs	r4, #0
+ 212 0044 EBE7     		b	.L6
+ 213              	.L10:
+ 214 0046 00BF     		.align	2
+ 215              	.L9:
+ 216 0048 00000000 		.word	myUltrasonic
+ 217 004c 00000000 		.word	.LC0
+ 218              		.cfi_endproc
+ 219              	.LFE133:
+ 221              		.section	.text.Error_Handler,"ax",%progbits
+ 222              		.align	1
+ 223              		.global	Error_Handler
+ 224              		.syntax unified
+ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccem4Hvt.s 			page 8
 
 
- 219              		@ args = 0, pretend = 0, frame = 0
- 220              		@ frame_needed = 0, uses_anonymous_args = 0
- 221              		@ link register save eliminated.
- 176:Src/main.c    ****   /* USER CODE BEGIN Error_Handler_Debug */
- 177:Src/main.c    ****   /* User can add his own implementation to report the HAL error return state */
- 178:Src/main.c    **** 
- 179:Src/main.c    ****   /* USER CODE END Error_Handler_Debug */
- 180:Src/main.c    **** }
- 222              		.loc 1 180 0
- 223 0000 7047     		bx	lr
- 224              		.cfi_endproc
- 225              	.LFE135:
- 227              		.comm	huart1,64,4
- 228              		.section	.rodata.main.str1.4,"aMS",%progbits,1
- 229              		.align	2
- 230              	.LC0:
- 231 0000 64697374 		.ascii	"distance is %f \015\012\000"
- 231      616E6365 
- 231      20697320 
- 231      2566200D 
- 231      0A00
- 232              		.text
- 233              	.Letext0:
- 234              		.file 2 "c:\\program files (x86)\\gnu tools arm embedded\\7 2018-q2-update\\arm-none-eabi\\include
- 235              		.file 3 "c:\\program files (x86)\\gnu tools arm embedded\\7 2018-q2-update\\arm-none-eabi\\include
- 236              		.file 4 "Drivers/CMSIS/Include/core_cm4.h"
- 237              		.file 5 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/system_stm32f4xx.h"
- 238              		.file 6 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f405xx.h"
- 239              		.file 7 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
- 240              		.file 8 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc_ex.h"
- 241              		.file 9 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h"
- 242              		.file 10 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h"
- 243              		.file 11 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h"
- 244              		.file 12 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h"
- 245              		.file 13 "Inc/tim.h"
- 246              		.file 14 "Inc/usart.h"
- 247              		.file 15 "c:\\program files (x86)\\gnu tools arm embedded\\7 2018-q2-update\\arm-none-eabi\\includ
- 248              		.file 16 "c:\\program files (x86)\\gnu tools arm embedded\\7 2018-q2-update\\arm-none-eabi\\includ
- 249              		.file 17 "c:\\program files (x86)\\gnu tools arm embedded\\7 2018-q2-update\\lib\\gcc\\arm-none-ea
- 250              		.file 18 "c:\\program files (x86)\\gnu tools arm embedded\\7 2018-q2-update\\arm-none-eabi\\includ
- 251              		.file 19 "Inc/test.h"
- 252              		.file 20 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h"
- 253              		.file 21 "Inc/gpio.h"
- 254              		.file 22 "Inc/dma.h"
- 255              		.file 23 "Inc/myprintf.h"
- 256              		.file 24 "<built-in>"
-ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccQti47c.s 			page 9
+ 225              		.thumb
+ 226              		.thumb_func
+ 227              		.fpu fpv4-sp-d16
+ 229              	Error_Handler:
+ 230              	.LFB135:
+ 166:Src/main.c    **** 
+ 167:Src/main.c    **** /* USER CODE BEGIN 4 */
+ 168:Src/main.c    **** 
+ 169:Src/main.c    **** /* USER CODE END 4 */
+ 170:Src/main.c    **** 
+ 171:Src/main.c    **** /**
+ 172:Src/main.c    ****   * @brief  This function is executed in case of error occurrence.
+ 173:Src/main.c    ****   * @retval None
+ 174:Src/main.c    ****   */
+ 175:Src/main.c    **** void Error_Handler(void)
+ 176:Src/main.c    **** {
+ 231              		.loc 1 176 0
+ 232              		.cfi_startproc
+ 233              		@ args = 0, pretend = 0, frame = 0
+ 234              		@ frame_needed = 0, uses_anonymous_args = 0
+ 235              		@ link register save eliminated.
+ 177:Src/main.c    ****   /* USER CODE BEGIN Error_Handler_Debug */
+ 178:Src/main.c    ****   /* User can add his own implementation to report the HAL error return state */
+ 179:Src/main.c    **** 
+ 180:Src/main.c    ****   /* USER CODE END Error_Handler_Debug */
+ 181:Src/main.c    **** }
+ 236              		.loc 1 181 0
+ 237 0000 7047     		bx	lr
+ 238              		.cfi_endproc
+ 239              	.LFE135:
+ 241              		.comm	huart1,64,4
+ 242              		.section	.rodata.main.str1.4,"aMS",%progbits,1
+ 243              		.align	2
+ 244              	.LC0:
+ 245 0000 64697374 		.ascii	"distance is %f \015\012\000"
+ 245      616E6365 
+ 245      20697320 
+ 245      2566200D 
+ 245      0A00
+ 246              		.text
+ 247              	.Letext0:
+ 248              		.file 2 "c:\\program files (x86)\\gnu tools arm embedded\\7 2018-q2-update\\arm-none-eabi\\include
+ 249              		.file 3 "c:\\program files (x86)\\gnu tools arm embedded\\7 2018-q2-update\\arm-none-eabi\\include
+ 250              		.file 4 "Drivers/CMSIS/Include/core_cm4.h"
+ 251              		.file 5 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/system_stm32f4xx.h"
+ 252              		.file 6 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f405xx.h"
+ 253              		.file 7 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
+ 254              		.file 8 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc_ex.h"
+ 255              		.file 9 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h"
+ 256              		.file 10 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h"
+ 257              		.file 11 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h"
+ 258              		.file 12 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h"
+ 259              		.file 13 "Inc/tim.h"
+ 260              		.file 14 "Inc/usart.h"
+ 261              		.file 15 "c:\\program files (x86)\\gnu tools arm embedded\\7 2018-q2-update\\arm-none-eabi\\includ
+ 262              		.file 16 "c:\\program files (x86)\\gnu tools arm embedded\\7 2018-q2-update\\arm-none-eabi\\includ
+ 263              		.file 17 "c:\\program files (x86)\\gnu tools arm embedded\\7 2018-q2-update\\lib\\gcc\\arm-none-ea
+ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccem4Hvt.s 			page 9
+
+
+ 264              		.file 18 "c:\\program files (x86)\\gnu tools arm embedded\\7 2018-q2-update\\arm-none-eabi\\includ
+ 265              		.file 19 "Inc/test.h"
+ 266              		.file 20 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h"
+ 267              		.file 21 "Inc/gpio.h"
+ 268              		.file 22 "Inc/dma.h"
+ 269              		.file 23 "Inc/myprintf.h"
+ 270              		.file 24 "<built-in>"
+ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccem4Hvt.s 			page 10
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 main.c
-C:\Users\Cairne\AppData\Local\Temp\ccQti47c.s:18     .text.SystemClock_Config:00000000 $t
-C:\Users\Cairne\AppData\Local\Temp\ccQti47c.s:25     .text.SystemClock_Config:00000000 SystemClock_Config
-C:\Users\Cairne\AppData\Local\Temp\ccQti47c.s:134    .text.SystemClock_Config:00000090 $d
-C:\Users\Cairne\AppData\Local\Temp\ccQti47c.s:141    .text.main:00000000 $t
-C:\Users\Cairne\AppData\Local\Temp\ccQti47c.s:148    .text.main:00000000 main
-C:\Users\Cairne\AppData\Local\Temp\ccQti47c.s:202    .text.main:0000003c $d
-C:\Users\Cairne\AppData\Local\Temp\ccQti47c.s:208    .text.Error_Handler:00000000 $t
-C:\Users\Cairne\AppData\Local\Temp\ccQti47c.s:215    .text.Error_Handler:00000000 Error_Handler
+C:\Users\Cairne\AppData\Local\Temp\ccem4Hvt.s:18     .text.SystemClock_Config:00000000 $t
+C:\Users\Cairne\AppData\Local\Temp\ccem4Hvt.s:25     .text.SystemClock_Config:00000000 SystemClock_Config
+C:\Users\Cairne\AppData\Local\Temp\ccem4Hvt.s:134    .text.SystemClock_Config:00000090 $d
+C:\Users\Cairne\AppData\Local\Temp\ccem4Hvt.s:141    .text.main:00000000 $t
+C:\Users\Cairne\AppData\Local\Temp\ccem4Hvt.s:148    .text.main:00000000 main
+C:\Users\Cairne\AppData\Local\Temp\ccem4Hvt.s:216    .text.main:00000048 $d
+C:\Users\Cairne\AppData\Local\Temp\ccem4Hvt.s:222    .text.Error_Handler:00000000 $t
+C:\Users\Cairne\AppData\Local\Temp\ccem4Hvt.s:229    .text.Error_Handler:00000000 Error_Handler
                             *COM*:00000040 huart1
-C:\Users\Cairne\AppData\Local\Temp\ccQti47c.s:229    .rodata.main.str1.4:00000000 $d
+C:\Users\Cairne\AppData\Local\Temp\ccem4Hvt.s:243    .rodata.main.str1.4:00000000 $d
 
 UNDEFINED SYMBOLS
 memset
@@ -494,8 +515,7 @@ MX_GPIO_Init
 MX_USART1_UART_Init
 MX_DMA_Init
 MX_TIM1_Init
-MX_TIM14_Init
+HAL_Delay
 pwmTest
 myPrint
-HAL_Delay
 myUltrasonic

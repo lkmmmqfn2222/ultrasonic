@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccziRm9N.s 			page 1
+ARM GAS  C:\Users\Cairne\AppData\Local\Temp\cc4s4wdy.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccziRm9N.s 			page 1
   47 000c 07E0     		b	.L2
   48              	.LVL1:
   49              	.L3:
-ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccziRm9N.s 			page 2
+ARM GAS  C:\Users\Cairne\AppData\Local\Temp\cc4s4wdy.s 			page 2
 
 
   10:Src/test.c    ****         accStep[i] = accStep[i-1] + 11;
@@ -118,44 +118,51 @@ ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccziRm9N.s 			page 1
   93              		.loc 1 20 0
   94              		.cfi_startproc
   95              		@ args = 0, pretend = 0, frame = 0
-ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccziRm9N.s 			page 3
+ARM GAS  C:\Users\Cairne\AppData\Local\Temp\cc4s4wdy.s 			page 3
 
 
   96              		@ frame_needed = 0, uses_anonymous_args = 0
   97              		@ link register save eliminated.
   98              	.LVL5:
-  21:Src/test.c    ****     
-  22:Src/test.c    **** }...
-  99              		.loc 1 22 0
- 100 0000 7047     		bx	lr
- 101              		.cfi_endproc
- 102              	.LFE131:
- 104              		.comm	myUltrasonic,16,4
- 105              		.comm	accStep,32,4
- 106              		.text
- 107              	.Letext0:
- 108              		.file 2 "c:\\program files (x86)\\gnu tools arm embedded\\7 2018-q2-update\\arm-none-eabi\\include
- 109              		.file 3 "c:\\program files (x86)\\gnu tools arm embedded\\7 2018-q2-update\\arm-none-eabi\\include
- 110              		.file 4 "Drivers/CMSIS/Include/core_cm4.h"
- 111              		.file 5 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/system_stm32f4xx.h"
- 112              		.file 6 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f405xx.h"
- 113              		.file 7 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
- 114              		.file 8 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h"
- 115              		.file 9 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h"
- 116              		.file 10 "Inc/tim.h"
- 117              		.file 11 "Inc/test.h"
-ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccziRm9N.s 			page 4
+  21:Src/test.c    ****     mySensor->distance = 0;
+  99              		.loc 1 21 0
+ 100 0000 0023     		movs	r3, #0
+ 101 0002 C360     		str	r3, [r0, #12]	@ float
+  22:Src/test.c    ****     mySensor->num = 1;
+ 102              		.loc 1 22 0
+ 103 0004 0123     		movs	r3, #1
+ 104 0006 0370     		strb	r3, [r0]
+  23:Src/test.c    **** }...
+ 105              		.loc 1 23 0
+ 106 0008 7047     		bx	lr
+ 107              		.cfi_endproc
+ 108              	.LFE131:
+ 110              		.comm	myUltrasonic,24,4
+ 111              		.comm	accStep,32,4
+ 112              		.text
+ 113              	.Letext0:
+ 114              		.file 2 "c:\\program files (x86)\\gnu tools arm embedded\\7 2018-q2-update\\arm-none-eabi\\include
+ 115              		.file 3 "c:\\program files (x86)\\gnu tools arm embedded\\7 2018-q2-update\\arm-none-eabi\\include
+ 116              		.file 4 "Drivers/CMSIS/Include/core_cm4.h"
+ 117              		.file 5 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/system_stm32f4xx.h"
+ 118              		.file 6 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f405xx.h"
+ 119              		.file 7 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
+ 120              		.file 8 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h"
+ 121              		.file 9 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h"
+ 122              		.file 10 "Inc/tim.h"
+ 123              		.file 11 "Inc/test.h"
+ARM GAS  C:\Users\Cairne\AppData\Local\Temp\cc4s4wdy.s 			page 4
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 test.c
-C:\Users\Cairne\AppData\Local\Temp\ccziRm9N.s:18     .text.pwmTest:00000000 $t
-C:\Users\Cairne\AppData\Local\Temp\ccziRm9N.s:25     .text.pwmTest:00000000 pwmTest
-C:\Users\Cairne\AppData\Local\Temp\ccziRm9N.s:77     .text.pwmTest:00000030 $d
-                            *COM*:00000010 myUltrasonic
+C:\Users\Cairne\AppData\Local\Temp\cc4s4wdy.s:18     .text.pwmTest:00000000 $t
+C:\Users\Cairne\AppData\Local\Temp\cc4s4wdy.s:25     .text.pwmTest:00000000 pwmTest
+C:\Users\Cairne\AppData\Local\Temp\cc4s4wdy.s:77     .text.pwmTest:00000030 $d
+                            *COM*:00000018 myUltrasonic
                             *COM*:00000020 accStep
-C:\Users\Cairne\AppData\Local\Temp\ccziRm9N.s:84     .text.ultrasonicInit:00000000 $t
-C:\Users\Cairne\AppData\Local\Temp\ccziRm9N.s:91     .text.ultrasonicInit:00000000 ultrasonicInit
+C:\Users\Cairne\AppData\Local\Temp\cc4s4wdy.s:84     .text.ultrasonicInit:00000000 $t
+C:\Users\Cairne\AppData\Local\Temp\cc4s4wdy.s:91     .text.ultrasonicInit:00000000 ultrasonicInit
 
 UNDEFINED SYMBOLS
 HAL_TIM_OC_Start_DMA

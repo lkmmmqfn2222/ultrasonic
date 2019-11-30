@@ -69,7 +69,7 @@ void SystemClock_Config(void);
 int main(void)
 {
   /* USER CODE BEGIN 1 */
-  
+  uint8_t printfCnt = 0;
   /* USER CODE END 1 */
   
 
@@ -94,10 +94,10 @@ int main(void)
   MX_USART1_UART_Init();
   MX_DMA_Init();
   MX_TIM1_Init();
-  MX_TIM14_Init();
   /* USER CODE BEGIN 2 */
   uint8_t i = 0;
   extern ULTRASONIC myUltrasonic;
+  //HAL_NVIC_DisableIRQ(EXTI15_10_IRQn);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -107,13 +107,14 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-    //uint32_t timCnt = __HAL_TIM_GET_COUNTER(&htim1);
-    //myPrint("test program: %d %d\r\n",i,timCnt);
-    //myPrint("printf 3.1415926 %f\r\n",3.1415926);
     pwmTest();
-    myPrint("distance is %f \r\n",myUltrasonic.distance);
+    if(printfCnt == 20){
+      printfCnt = 0;
+      myPrint("distance is %f \r\n",myUltrasonic.distance);
+    }
     HAL_Delay(20);
     i++;
+    printfCnt++;
   }
   /* USER CODE END 3 */
 }

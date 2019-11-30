@@ -25,7 +25,8 @@ build/stm32f4xx_it.o: Src/stm32f4xx_it.c Inc/main.h \
  Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h \
  Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h \
  Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h Inc/stm32f4xx_it.h \
- Inc/tim.h Inc/main.h Inc/test.h Inc/tim.h
+ Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f405xx.h Inc/tim.h \
+ Inc/main.h Inc/test.h Inc/tim.h
 
 Inc/main.h:
 
@@ -86,6 +87,8 @@ Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h:
 Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h:
 
 Inc/stm32f4xx_it.h:
+
+Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f405xx.h:
 
 Inc/tim.h:
 

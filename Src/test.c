@@ -18,5 +18,6 @@ void pwmTest(void){
 // }
 
 void ultrasonicInit(pULTRASONIC mySensor){
-    
+    mySensor->distance = 0;
+    mySensor->num = 1;
 }
