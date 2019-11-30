@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "myprintf.h": "c",
+        "test.h": "c"
+    }
+}

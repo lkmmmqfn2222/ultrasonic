@@ -1,0 +1,1007 @@
+ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccOz45Cf.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"myprintf.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.printCh,"ax",%progbits
+  18              		.align	1
+  19              		.global	printCh
+  20              		.syntax unified
+  21              		.thumb
+  22              		.thumb_func
+  23              		.fpu fpv4-sp-d16
+  25              	printCh:
+  26              	.LFB134:
+  27              		.file 1 "Src/myprintf.c"
+   1:Src/myprintf.c **** #include "myprintf.h"
+   2:Src/myprintf.c **** 
+   3:Src/myprintf.c **** void myPrint(char* fmt, ...)
+   4:Src/myprintf.c **** {
+   5:Src/myprintf.c **** 	double vargflt = 0;
+   6:Src/myprintf.c **** 	int  vargint = 0;
+   7:Src/myprintf.c **** 	char* vargpch = NULL;
+   8:Src/myprintf.c **** 	char vargch = 0;
+   9:Src/myprintf.c **** 	char* pfmt = NULL;
+  10:Src/myprintf.c **** 	va_list vp;
+  11:Src/myprintf.c **** 
+  12:Src/myprintf.c **** 	va_start(vp, fmt);
+  13:Src/myprintf.c **** 	pfmt = fmt;
+  14:Src/myprintf.c **** 
+  15:Src/myprintf.c **** 	while (*pfmt)
+  16:Src/myprintf.c **** 	{
+  17:Src/myprintf.c **** 		if (*pfmt == '%')
+  18:Src/myprintf.c **** 		{
+  19:Src/myprintf.c **** 			switch (*(++pfmt))
+  20:Src/myprintf.c **** 			{
+  21:Src/myprintf.c **** 
+  22:Src/myprintf.c **** 			case 'c':
+  23:Src/myprintf.c **** 				vargch = va_arg(vp, int);
+  24:Src/myprintf.c **** 				/*    va_arg(ap, type), if type is narrow type (char, short, float) an error is given in strict
+  25:Src/myprintf.c **** 				mode, or a warning otherwise.In non-strict ANSI mode, 'type' is allowed to be any expression. *
+  26:Src/myprintf.c **** 				printCh(vargch);
+  27:Src/myprintf.c **** 				break;
+  28:Src/myprintf.c **** 			case 'd':
+  29:Src/myprintf.c **** 			case 'i':
+  30:Src/myprintf.c **** 				vargint = va_arg(vp, int);
+  31:Src/myprintf.c **** 				printDec(vargint);
+ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccOz45Cf.s 			page 2
+
+
+  32:Src/myprintf.c **** 				break;
+  33:Src/myprintf.c **** 			case 'f':
+  34:Src/myprintf.c **** 				vargflt = va_arg(vp, double);
+  35:Src/myprintf.c **** 				/*    va_arg(ap, type), if type is narrow type (char, short, float) an error is given in strict
+  36:Src/myprintf.c **** 				mode, or a warning otherwise.In non-strict ANSI mode, 'type' is allowed to be any expression. *
+  37:Src/myprintf.c **** 				printFlt(vargflt);
+  38:Src/myprintf.c **** 				break;
+  39:Src/myprintf.c **** 			case 's':
+  40:Src/myprintf.c **** 				vargpch = va_arg(vp, char*);
+  41:Src/myprintf.c **** 				printStr(vargpch);
+  42:Src/myprintf.c **** 				break;
+  43:Src/myprintf.c **** 			case 'b':
+  44:Src/myprintf.c **** 			case 'B':
+  45:Src/myprintf.c **** 				vargint = va_arg(vp, int);
+  46:Src/myprintf.c **** 				printBin(vargint);
+  47:Src/myprintf.c **** 				break;
+  48:Src/myprintf.c **** 			case 'x':
+  49:Src/myprintf.c **** 			case 'X':
+  50:Src/myprintf.c **** 				vargint = va_arg(vp, int);
+  51:Src/myprintf.c **** 				printHex(vargint);
+  52:Src/myprintf.c **** 				break;
+  53:Src/myprintf.c **** 			case '%':
+  54:Src/myprintf.c **** 				printCh('%');
+  55:Src/myprintf.c **** 				break;
+  56:Src/myprintf.c **** 			default:
+  57:Src/myprintf.c **** 				break;
+  58:Src/myprintf.c **** 			}
+  59:Src/myprintf.c **** 			pfmt++;
+  60:Src/myprintf.c **** 		}
+  61:Src/myprintf.c **** 		else
+  62:Src/myprintf.c **** 		{
+  63:Src/myprintf.c **** 			printCh(*pfmt++);
+  64:Src/myprintf.c **** 		}
+  65:Src/myprintf.c **** 	}
+  66:Src/myprintf.c **** 	va_end(vp);
+  67:Src/myprintf.c **** }
+  68:Src/myprintf.c **** 
+  69:Src/myprintf.c **** void printCh(char ch)
+  70:Src/myprintf.c **** {
+  28              		.loc 1 70 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 8
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              	.LVL0:
+  33 0000 00B5     		push	{lr}
+  34              	.LCFI0:
+  35              		.cfi_def_cfa_offset 4
+  36              		.cfi_offset 14, -4
+  37 0002 83B0     		sub	sp, sp, #12
+  38              	.LCFI1:
+  39              		.cfi_def_cfa_offset 16
+  40 0004 02A9     		add	r1, sp, #8
+  41 0006 01F8010D 		strb	r0, [r1, #-1]!
+  71:Src/myprintf.c **** 	//	return;
+  72:Src/myprintf.c **** 	//USART_ClearFlag(USART1, USART_FLAG_TC);
+  73:Src/myprintf.c ****     HAL_UART_Transmit(&huart1,(__uint8_t*)&ch,1,0x0ff);
+  42              		.loc 1 73 0
+ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccOz45Cf.s 			page 3
+
+
+  43 000a FF23     		movs	r3, #255
+  44 000c 0122     		movs	r2, #1
+  45 000e 0348     		ldr	r0, .L3
+  46              	.LVL1:
+  47 0010 FFF7FEFF 		bl	HAL_UART_Transmit
+  48              	.LVL2:
+  74:Src/myprintf.c **** }
+  49              		.loc 1 74 0
+  50 0014 03B0     		add	sp, sp, #12
+  51              	.LCFI2:
+  52              		.cfi_def_cfa_offset 4
+  53              		@ sp needed
+  54 0016 5DF804FB 		ldr	pc, [sp], #4
+  55              	.L4:
+  56 001a 00BF     		.align	2
+  57              	.L3:
+  58 001c 00000000 		.word	huart1
+  59              		.cfi_endproc
+  60              	.LFE134:
+  62              		.section	.text.printDec,"ax",%progbits
+  63              		.align	1
+  64              		.global	printDec
+  65              		.syntax unified
+  66              		.thumb
+  67              		.thumb_func
+  68              		.fpu fpv4-sp-d16
+  70              	printDec:
+  71              	.LFB135:
+  75:Src/myprintf.c **** 
+  76:Src/myprintf.c **** void printDec(int dec)
+  77:Src/myprintf.c **** {
+  72              		.loc 1 77 0
+  73              		.cfi_startproc
+  74              		@ args = 0, pretend = 0, frame = 0
+  75              		@ frame_needed = 0, uses_anonymous_args = 0
+  76              	.LVL3:
+  77 0000 38B5     		push	{r3, r4, r5, lr}
+  78              	.LCFI3:
+  79              		.cfi_def_cfa_offset 16
+  80              		.cfi_offset 3, -16
+  81              		.cfi_offset 4, -12
+  82              		.cfi_offset 5, -8
+  83              		.cfi_offset 14, -4
+  78:Src/myprintf.c **** 	if (dec == 0)
+  84              		.loc 1 78 0
+  85 0002 28B1     		cbz	r0, .L16
+  86 0004 0546     		mov	r5, r0
+  79:Src/myprintf.c **** 	{
+  80:Src/myprintf.c **** 		printCh('0');
+  81:Src/myprintf.c **** 		return;
+  82:Src/myprintf.c **** 	}
+  83:Src/myprintf.c **** 	if (dec < 0)
+  87              		.loc 1 83 0
+  88 0006 0028     		cmp	r0, #0
+  89 0008 06DB     		blt	.L17
+  90              	.LVL4:
+  91              	.L8:
+ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccOz45Cf.s 			page 4
+
+
+  84:Src/myprintf.c **** 	{
+  85:Src/myprintf.c **** 		dec = -dec;
+  86:Src/myprintf.c **** 		printCh('-');
+  87:Src/myprintf.c **** 	}
+  88:Src/myprintf.c **** 
+  89:Src/myprintf.c **** 	int num = 0;
+  90:Src/myprintf.c **** 	int tmp = dec;
+  92              		.loc 1 90 0
+  93 000a 2B46     		mov	r3, r5
+  89:Src/myprintf.c **** 	int tmp = dec;
+  94              		.loc 1 89 0
+  95 000c 0024     		movs	r4, #0
+  91:Src/myprintf.c **** 	while (tmp >= 10)
+  96              		.loc 1 91 0
+  97 000e 0FE0     		b	.L9
+  98              	.LVL5:
+  99              	.L16:
+  80:Src/myprintf.c **** 		return;
+ 100              		.loc 1 80 0
+ 101 0010 3020     		movs	r0, #48
+ 102              	.LVL6:
+ 103 0012 FFF7FEFF 		bl	printCh
+ 104              	.LVL7:
+ 105              	.L5:
+  92:Src/myprintf.c **** 	{
+  93:Src/myprintf.c **** 		num += 1;
+  94:Src/myprintf.c **** 		tmp /= 10;
+  95:Src/myprintf.c **** 	}
+  96:Src/myprintf.c **** 
+  97:Src/myprintf.c **** 	for (int i = num; i >= 0; i--)
+  98:Src/myprintf.c **** 	{
+  99:Src/myprintf.c **** 		int tmp = dec;
+ 100:Src/myprintf.c **** 		for (int j = 0; j < i; j++)
+ 101:Src/myprintf.c **** 			tmp /= 10;
+ 102:Src/myprintf.c **** 		tmp = tmp % 10;
+ 103:Src/myprintf.c **** 		printCh((char)(tmp + '0'));
+ 104:Src/myprintf.c **** 	}
+ 105:Src/myprintf.c **** 	
+ 106:Src/myprintf.c **** }
+ 106              		.loc 1 106 0
+ 107 0016 38BD     		pop	{r3, r4, r5, pc}
+ 108              	.LVL8:
+ 109              	.L17:
+  85:Src/myprintf.c **** 		printCh('-');
+ 110              		.loc 1 85 0
+ 111 0018 4542     		negs	r5, r0
+ 112              	.LVL9:
+  86:Src/myprintf.c **** 	}
+ 113              		.loc 1 86 0
+ 114 001a 2D20     		movs	r0, #45
+ 115 001c FFF7FEFF 		bl	printCh
+ 116              	.LVL10:
+ 117 0020 F3E7     		b	.L8
+ 118              	.LVL11:
+ 119              	.L10:
+  93:Src/myprintf.c **** 		tmp /= 10;
+ 120              		.loc 1 93 0
+ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccOz45Cf.s 			page 5
+
+
+ 121 0022 0134     		adds	r4, r4, #1
+ 122              	.LVL12:
+  94:Src/myprintf.c **** 	}
+ 123              		.loc 1 94 0
+ 124 0024 124A     		ldr	r2, .L18
+ 125 0026 82FB0312 		smull	r1, r2, r2, r3
+ 126 002a DB17     		asrs	r3, r3, #31
+ 127              	.LVL13:
+ 128 002c C3EBA203 		rsb	r3, r3, r2, asr #2
+ 129              	.LVL14:
+ 130              	.L9:
+  91:Src/myprintf.c **** 	{
+ 131              		.loc 1 91 0
+ 132 0030 092B     		cmp	r3, #9
+ 133 0032 F6DC     		bgt	.L10
+ 134 0034 17E0     		b	.L11
+ 135              	.LVL15:
+ 136              	.L12:
+ 137              	.LBB2:
+ 138              	.LBB3:
+ 139              	.LBB4:
+ 101:Src/myprintf.c **** 		tmp = tmp % 10;
+ 140              		.loc 1 101 0 discriminator 3
+ 141 0036 0E4A     		ldr	r2, .L18
+ 142 0038 82FB0302 		smull	r0, r2, r2, r3
+ 143 003c DB17     		asrs	r3, r3, #31
+ 144              	.LVL16:
+ 145 003e C3EBA203 		rsb	r3, r3, r2, asr #2
+ 146              	.LVL17:
+ 100:Src/myprintf.c **** 			tmp /= 10;
+ 147              		.loc 1 100 0 discriminator 3
+ 148 0042 0131     		adds	r1, r1, #1
+ 149              	.LVL18:
+ 150              	.L13:
+ 100:Src/myprintf.c **** 			tmp /= 10;
+ 151              		.loc 1 100 0 is_stmt 0 discriminator 1
+ 152 0044 8C42     		cmp	r4, r1
+ 153 0046 F6DC     		bgt	.L12
+ 154              	.LBE4:
+ 102:Src/myprintf.c **** 		printCh((char)(tmp + '0'));
+ 155              		.loc 1 102 0 is_stmt 1 discriminator 2
+ 156 0048 094A     		ldr	r2, .L18
+ 157 004a 82FB0312 		smull	r1, r2, r2, r3
+ 158              	.LVL19:
+ 159 004e D817     		asrs	r0, r3, #31
+ 160 0050 C0EBA200 		rsb	r0, r0, r2, asr #2
+ 161 0054 00EB8000 		add	r0, r0, r0, lsl #2
+ 162 0058 4200     		lsls	r2, r0, #1
+ 163 005a 981A     		subs	r0, r3, r2
+ 164              	.LVL20:
+ 103:Src/myprintf.c **** 	}
+ 165              		.loc 1 103 0 discriminator 2
+ 166 005c 3030     		adds	r0, r0, #48
+ 167              	.LVL21:
+ 168 005e C0B2     		uxtb	r0, r0
+ 169              	.LVL22:
+ 170 0060 FFF7FEFF 		bl	printCh
+ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccOz45Cf.s 			page 6
+
+
+ 171              	.LVL23:
+ 172              	.LBE3:
+  97:Src/myprintf.c **** 	{
+ 173              		.loc 1 97 0 discriminator 2
+ 174 0064 013C     		subs	r4, r4, #1
+ 175              	.LVL24:
+ 176              	.L11:
+  97:Src/myprintf.c **** 	{
+ 177              		.loc 1 97 0 is_stmt 0 discriminator 1
+ 178 0066 002C     		cmp	r4, #0
+ 179 0068 D5DB     		blt	.L5
+ 180              	.LBB6:
+  99:Src/myprintf.c **** 		for (int j = 0; j < i; j++)
+ 181              		.loc 1 99 0 is_stmt 1
+ 182 006a 2B46     		mov	r3, r5
+ 183              	.LBB5:
+ 100:Src/myprintf.c **** 			tmp /= 10;
+ 184              		.loc 1 100 0
+ 185 006c 0021     		movs	r1, #0
+ 186 006e E9E7     		b	.L13
+ 187              	.L19:
+ 188              		.align	2
+ 189              	.L18:
+ 190 0070 67666666 		.word	1717986919
+ 191              	.LBE5:
+ 192              	.LBE6:
+ 193              	.LBE2:
+ 194              		.cfi_endproc
+ 195              	.LFE135:
+ 197              		.global	__aeabi_d2iz
+ 198              		.global	__aeabi_i2d
+ 199              		.global	__aeabi_dsub
+ 200              		.global	__aeabi_dmul
+ 201              		.section	.text.printFlt,"ax",%progbits
+ 202              		.align	1
+ 203              		.global	printFlt
+ 204              		.syntax unified
+ 205              		.thumb
+ 206              		.thumb_func
+ 207              		.fpu fpv4-sp-d16
+ 209              	printFlt:
+ 210              	.LFB136:
+ 107:Src/myprintf.c **** 
+ 108:Src/myprintf.c **** void printFlt(double flt)
+ 109:Src/myprintf.c **** {
+ 211              		.loc 1 109 0
+ 212              		.cfi_startproc
+ 213              		@ args = 0, pretend = 0, frame = 0
+ 214              		@ frame_needed = 0, uses_anonymous_args = 0
+ 215              	.LVL25:
+ 216 0000 70B5     		push	{r4, r5, r6, lr}
+ 217              	.LCFI4:
+ 218              		.cfi_def_cfa_offset 16
+ 219              		.cfi_offset 4, -16
+ 220              		.cfi_offset 5, -12
+ 221              		.cfi_offset 6, -8
+ 222              		.cfi_offset 14, -4
+ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccOz45Cf.s 			page 7
+
+
+ 223 0002 55EC104B 		vmov	r4, r5, d0
+ 224              	.LVL26:
+ 110:Src/myprintf.c **** //	int icnt = 0;
+ 111:Src/myprintf.c **** 	int tmpint = 0;
+ 112:Src/myprintf.c **** 
+ 113:Src/myprintf.c **** 	tmpint = (int)flt;
+ 225              		.loc 1 113 0
+ 226 0006 10EE100A 		vmov	r0, s0	@ int
+ 227 000a 2946     		mov	r1, r5
+ 228 000c FFF7FEFF 		bl	__aeabi_d2iz
+ 229              	.LVL27:
+ 230 0010 0646     		mov	r6, r0
+ 231              	.LVL28:
+ 114:Src/myprintf.c **** 	printDec(tmpint);
+ 232              		.loc 1 114 0
+ 233 0012 FFF7FEFF 		bl	printDec
+ 234              	.LVL29:
+ 115:Src/myprintf.c **** 	printCh('.');
+ 235              		.loc 1 115 0
+ 236 0016 2E20     		movs	r0, #46
+ 237 0018 FFF7FEFF 		bl	printCh
+ 238              	.LVL30:
+ 116:Src/myprintf.c **** 	flt = flt - tmpint;
+ 239              		.loc 1 116 0
+ 240 001c 3046     		mov	r0, r6
+ 241 001e FFF7FEFF 		bl	__aeabi_i2d
+ 242              	.LVL31:
+ 243 0022 0246     		mov	r2, r0
+ 244 0024 0B46     		mov	r3, r1
+ 245 0026 2046     		mov	r0, r4
+ 246 0028 2946     		mov	r1, r5
+ 247 002a FFF7FEFF 		bl	__aeabi_dsub
+ 248              	.LVL32:
+ 117:Src/myprintf.c **** 	tmpint = (int)(flt * 1000000);
+ 249              		.loc 1 117 0
+ 250 002e 06A3     		adr	r3, .L22
+ 251 0030 D3E90023 		ldrd	r2, [r3]
+ 252 0034 FFF7FEFF 		bl	__aeabi_dmul
+ 253              	.LVL33:
+ 254 0038 FFF7FEFF 		bl	__aeabi_d2iz
+ 255              	.LVL34:
+ 118:Src/myprintf.c **** 	printDec(tmpint);
+ 256              		.loc 1 118 0
+ 257 003c FFF7FEFF 		bl	printDec
+ 258              	.LVL35:
+ 119:Src/myprintf.c **** }
+ 259              		.loc 1 119 0
+ 260 0040 70BD     		pop	{r4, r5, r6, pc}
+ 261              	.L23:
+ 262 0042 00BFAFF3 		.align	3
+ 262      0080
+ 263              	.L22:
+ 264 0048 00000000 		.word	0
+ 265 004c 80842E41 		.word	1093567616
+ 266              		.cfi_endproc
+ 267              	.LFE136:
+ 269              		.section	.text.printStr,"ax",%progbits
+ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccOz45Cf.s 			page 8
+
+
+ 270              		.align	1
+ 271              		.global	printStr
+ 272              		.syntax unified
+ 273              		.thumb
+ 274              		.thumb_func
+ 275              		.fpu fpv4-sp-d16
+ 277              	printStr:
+ 278              	.LFB137:
+ 120:Src/myprintf.c **** 
+ 121:Src/myprintf.c **** void printStr(char* str)
+ 122:Src/myprintf.c **** {
+ 279              		.loc 1 122 0
+ 280              		.cfi_startproc
+ 281              		@ args = 0, pretend = 0, frame = 0
+ 282              		@ frame_needed = 0, uses_anonymous_args = 0
+ 283              	.LVL36:
+ 284 0000 10B5     		push	{r4, lr}
+ 285              	.LCFI5:
+ 286              		.cfi_def_cfa_offset 8
+ 287              		.cfi_offset 4, -8
+ 288              		.cfi_offset 14, -4
+ 289 0002 0446     		mov	r4, r0
+ 123:Src/myprintf.c **** 	while (*str)
+ 290              		.loc 1 123 0
+ 291 0004 02E0     		b	.L25
+ 292              	.LVL37:
+ 293              	.L26:
+ 124:Src/myprintf.c **** 	{
+ 125:Src/myprintf.c **** 		printCh(*str++);
+ 294              		.loc 1 125 0
+ 295 0006 0134     		adds	r4, r4, #1
+ 296              	.LVL38:
+ 297 0008 FFF7FEFF 		bl	printCh
+ 298              	.LVL39:
+ 299              	.L25:
+ 123:Src/myprintf.c **** 	while (*str)
+ 300              		.loc 1 123 0
+ 301 000c 2078     		ldrb	r0, [r4]	@ zero_extendqisi2
+ 302 000e 0028     		cmp	r0, #0
+ 303 0010 F9D1     		bne	.L26
+ 126:Src/myprintf.c **** 	}
+ 127:Src/myprintf.c **** }
+ 304              		.loc 1 127 0
+ 305 0012 10BD     		pop	{r4, pc}
+ 306              		.cfi_endproc
+ 307              	.LFE137:
+ 309              		.section	.text.printBin,"ax",%progbits
+ 310              		.align	1
+ 311              		.global	printBin
+ 312              		.syntax unified
+ 313              		.thumb
+ 314              		.thumb_func
+ 315              		.fpu fpv4-sp-d16
+ 317              	printBin:
+ 318              	.LFB138:
+ 128:Src/myprintf.c **** 
+ 129:Src/myprintf.c **** void printBin(int bin)
+ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccOz45Cf.s 			page 9
+
+
+ 130:Src/myprintf.c **** {
+ 319              		.loc 1 130 0
+ 320              		.cfi_startproc
+ 321              		@ args = 0, pretend = 0, frame = 0
+ 322              		@ frame_needed = 0, uses_anonymous_args = 0
+ 323              	.LVL40:
+ 324 0000 10B5     		push	{r4, lr}
+ 325              	.LCFI6:
+ 326              		.cfi_def_cfa_offset 8
+ 327              		.cfi_offset 4, -8
+ 328              		.cfi_offset 14, -4
+ 131:Src/myprintf.c **** 	if (bin == 0)
+ 329              		.loc 1 131 0
+ 330 0002 18B9     		cbnz	r0, .L29
+ 132:Src/myprintf.c **** 	{
+ 133:Src/myprintf.c **** 		printStr("0b");
+ 331              		.loc 1 133 0
+ 332 0004 0A48     		ldr	r0, .L32
+ 333              	.LVL41:
+ 334 0006 FFF7FEFF 		bl	printStr
+ 335              	.LVL42:
+ 336              	.L28:
+ 134:Src/myprintf.c **** 		return;
+ 135:Src/myprintf.c **** 	}
+ 136:Src/myprintf.c **** 	printBin(bin / 2);
+ 137:Src/myprintf.c **** 	printCh((char)(bin % 2 + '0'));
+ 138:Src/myprintf.c **** }
+ 337              		.loc 1 138 0
+ 338 000a 10BD     		pop	{r4, pc}
+ 339              	.LVL43:
+ 340              	.L29:
+ 341 000c 0446     		mov	r4, r0
+ 136:Src/myprintf.c **** 	printCh((char)(bin % 2 + '0'));
+ 342              		.loc 1 136 0
+ 343 000e 00EBD070 		add	r0, r0, r0, lsr #31
+ 344              	.LVL44:
+ 345 0012 4010     		asrs	r0, r0, #1
+ 346 0014 FFF7FEFF 		bl	printBin
+ 347              	.LVL45:
+ 137:Src/myprintf.c **** }
+ 348              		.loc 1 137 0
+ 349 0018 002C     		cmp	r4, #0
+ 350 001a 04F00104 		and	r4, r4, #1
+ 351              	.LVL46:
+ 352 001e B8BF     		it	lt
+ 353 0020 6442     		rsblt	r4, r4, #0
+ 354 0022 04F13000 		add	r0, r4, #48
+ 355 0026 C0B2     		uxtb	r0, r0
+ 356 0028 FFF7FEFF 		bl	printCh
+ 357              	.LVL47:
+ 358 002c EDE7     		b	.L28
+ 359              	.L33:
+ 360 002e 00BF     		.align	2
+ 361              	.L32:
+ 362 0030 00000000 		.word	.LC0
+ 363              		.cfi_endproc
+ 364              	.LFE138:
+ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccOz45Cf.s 			page 10
+
+
+ 366              		.section	.text.printHex,"ax",%progbits
+ 367              		.align	1
+ 368              		.global	printHex
+ 369              		.syntax unified
+ 370              		.thumb
+ 371              		.thumb_func
+ 372              		.fpu fpv4-sp-d16
+ 374              	printHex:
+ 375              	.LFB139:
+ 139:Src/myprintf.c **** 
+ 140:Src/myprintf.c **** void printHex(int hex)
+ 141:Src/myprintf.c **** {
+ 376              		.loc 1 141 0
+ 377              		.cfi_startproc
+ 378              		@ args = 0, pretend = 0, frame = 0
+ 379              		@ frame_needed = 0, uses_anonymous_args = 0
+ 380              	.LVL48:
+ 381 0000 10B5     		push	{r4, lr}
+ 382              	.LCFI7:
+ 383              		.cfi_def_cfa_offset 8
+ 384              		.cfi_offset 4, -8
+ 385              		.cfi_offset 14, -4
+ 142:Src/myprintf.c **** 	if (hex == 0)
+ 386              		.loc 1 142 0
+ 387 0002 18B9     		cbnz	r0, .L35
+ 143:Src/myprintf.c **** 	{
+ 144:Src/myprintf.c **** 		printStr("0x");
+ 388              		.loc 1 144 0
+ 389 0004 1248     		ldr	r0, .L42
+ 390              	.LVL49:
+ 391 0006 FFF7FEFF 		bl	printStr
+ 392              	.LVL50:
+ 393              	.L34:
+ 145:Src/myprintf.c **** 		return;
+ 146:Src/myprintf.c **** 	}
+ 147:Src/myprintf.c **** 	printHex(hex / 16);
+ 148:Src/myprintf.c **** 	if (hex < 10)
+ 149:Src/myprintf.c **** 	{
+ 150:Src/myprintf.c **** 		printCh((char)(hex % 16 + '0'));
+ 151:Src/myprintf.c **** 	}
+ 152:Src/myprintf.c **** 	else
+ 153:Src/myprintf.c **** 	{
+ 154:Src/myprintf.c **** 		printCh((char)(hex % 16 - 10 + 'a'));
+ 155:Src/myprintf.c **** 	}
+ 156:Src/myprintf.c **** }
+ 394              		.loc 1 156 0
+ 395 000a 10BD     		pop	{r4, pc}
+ 396              	.LVL51:
+ 397              	.L35:
+ 398 000c 0446     		mov	r4, r0
+ 147:Src/myprintf.c **** 	if (hex < 10)
+ 399              		.loc 1 147 0
+ 400 000e 0028     		cmp	r0, #0
+ 401 0010 10DB     		blt	.L40
+ 402              	.LVL52:
+ 403              	.L37:
+ 404 0012 0011     		asrs	r0, r0, #4
+ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccOz45Cf.s 			page 11
+
+
+ 405 0014 FFF7FEFF 		bl	printHex
+ 406              	.LVL53:
+ 148:Src/myprintf.c **** 	{
+ 407              		.loc 1 148 0
+ 408 0018 092C     		cmp	r4, #9
+ 409 001a 0DDD     		ble	.L41
+ 154:Src/myprintf.c **** 	}
+ 410              		.loc 1 154 0
+ 411 001c 6342     		rsbs	r3, r4, #0
+ 412 001e 04F00F04 		and	r4, r4, #15
+ 413              	.LVL54:
+ 414 0022 03F00F03 		and	r3, r3, #15
+ 415 0026 58BF     		it	pl
+ 416 0028 5C42     		rsbpl	r4, r3, #0
+ 417 002a 5734     		adds	r4, r4, #87
+ 418 002c E0B2     		uxtb	r0, r4
+ 419 002e FFF7FEFF 		bl	printCh
+ 420              	.LVL55:
+ 421 0032 EAE7     		b	.L34
+ 422              	.LVL56:
+ 423              	.L40:
+ 147:Src/myprintf.c **** 	if (hex < 10)
+ 424              		.loc 1 147 0
+ 425 0034 0F30     		adds	r0, r0, #15
+ 426              	.LVL57:
+ 427 0036 ECE7     		b	.L37
+ 428              	.L41:
+ 150:Src/myprintf.c **** 	}
+ 429              		.loc 1 150 0
+ 430 0038 6342     		rsbs	r3, r4, #0
+ 431 003a 04F00F04 		and	r4, r4, #15
+ 432              	.LVL58:
+ 433 003e 03F00F03 		and	r3, r3, #15
+ 434 0042 58BF     		it	pl
+ 435 0044 5C42     		rsbpl	r4, r3, #0
+ 436 0046 3034     		adds	r4, r4, #48
+ 437 0048 E0B2     		uxtb	r0, r4
+ 438 004a FFF7FEFF 		bl	printCh
+ 439              	.LVL59:
+ 440 004e DCE7     		b	.L34
+ 441              	.L43:
+ 442              		.align	2
+ 443              	.L42:
+ 444 0050 00000000 		.word	.LC1
+ 445              		.cfi_endproc
+ 446              	.LFE139:
+ 448              		.section	.text.myPrint,"ax",%progbits
+ 449              		.align	1
+ 450              		.global	myPrint
+ 451              		.syntax unified
+ 452              		.thumb
+ 453              		.thumb_func
+ 454              		.fpu fpv4-sp-d16
+ 456              	myPrint:
+ 457              	.LFB133:
+   4:Src/myprintf.c **** 	double vargflt = 0;
+ 458              		.loc 1 4 0
+ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccOz45Cf.s 			page 12
+
+
+ 459              		.cfi_startproc
+ 460              		@ args = 4, pretend = 16, frame = 8
+ 461              		@ frame_needed = 0, uses_anonymous_args = 1
+ 462              	.LVL60:
+ 463 0000 0FB4     		push	{r0, r1, r2, r3}
+ 464              	.LCFI8:
+ 465              		.cfi_def_cfa_offset 16
+ 466              		.cfi_offset 0, -16
+ 467              		.cfi_offset 1, -12
+ 468              		.cfi_offset 2, -8
+ 469              		.cfi_offset 3, -4
+ 470 0002 10B5     		push	{r4, lr}
+ 471              	.LCFI9:
+ 472              		.cfi_def_cfa_offset 24
+ 473              		.cfi_offset 4, -24
+ 474              		.cfi_offset 14, -20
+ 475 0004 82B0     		sub	sp, sp, #8
+ 476              	.LCFI10:
+ 477              		.cfi_def_cfa_offset 32
+ 478 0006 04AB     		add	r3, sp, #16
+ 479 0008 53F8044B 		ldr	r4, [r3], #4
+ 480              	.LVL61:
+  12:Src/myprintf.c **** 	pfmt = fmt;
+ 481              		.loc 1 12 0
+ 482 000c 0193     		str	r3, [sp, #4]
+ 483              	.LVL62:
+  15:Src/myprintf.c **** 	{
+ 484              		.loc 1 15 0
+ 485 000e 06E0     		b	.L45
+ 486              	.LVL63:
+ 487              	.L52:
+  23:Src/myprintf.c **** 				/*    va_arg(ap, type), if type is narrow type (char, short, float) an error is given in strict
+ 488              		.loc 1 23 0
+ 489 0010 019B     		ldr	r3, [sp, #4]
+ 490 0012 1A1D     		adds	r2, r3, #4
+ 491 0014 0192     		str	r2, [sp, #4]
+ 492              	.LVL64:
+  26:Src/myprintf.c **** 				break;
+ 493              		.loc 1 26 0
+ 494 0016 1878     		ldrb	r0, [r3]	@ zero_extendqisi2
+ 495 0018 FFF7FEFF 		bl	printCh
+ 496              	.LVL65:
+ 497              	.L47:
+  59:Src/myprintf.c **** 		}
+ 498              		.loc 1 59 0
+ 499 001c 0234     		adds	r4, r4, #2
+ 500              	.LVL66:
+ 501              	.L45:
+  15:Src/myprintf.c **** 	{
+ 502              		.loc 1 15 0
+ 503 001e 2078     		ldrb	r0, [r4]	@ zero_extendqisi2
+ 504 0020 0028     		cmp	r0, #0
+ 505 0022 00F0E380 		beq	.L59
+  17:Src/myprintf.c **** 		{
+ 506              		.loc 1 17 0
+ 507 0026 2528     		cmp	r0, #37
+ 508 0028 40F0DC80 		bne	.L46
+ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccOz45Cf.s 			page 13
+
+
+ 509              	.LVL67:
+  19:Src/myprintf.c **** 			{
+ 510              		.loc 1 19 0
+ 511 002c 6378     		ldrb	r3, [r4, #1]	@ zero_extendqisi2
+ 512 002e 253B     		subs	r3, r3, #37
+ 513 0030 532B     		cmp	r3, #83
+ 514 0032 F3D8     		bhi	.L47
+ 515 0034 01A2     		adr	r2, .L49
+ 516 0036 52F823F0 		ldr	pc, [r2, r3, lsl #2]
+ 517 003a 00BF     		.p2align 2
+ 518              	.L49:
+ 519 003c DD010000 		.word	.L48+1
+ 520 0040 1D000000 		.word	.L47+1
+ 521 0044 1D000000 		.word	.L47+1
+ 522 0048 1D000000 		.word	.L47+1
+ 523 004c 1D000000 		.word	.L47+1
+ 524 0050 1D000000 		.word	.L47+1
+ 525 0054 1D000000 		.word	.L47+1
+ 526 0058 1D000000 		.word	.L47+1
+ 527 005c 1D000000 		.word	.L47+1
+ 528 0060 1D000000 		.word	.L47+1
+ 529 0064 1D000000 		.word	.L47+1
+ 530 0068 1D000000 		.word	.L47+1
+ 531 006c 1D000000 		.word	.L47+1
+ 532 0070 1D000000 		.word	.L47+1
+ 533 0074 1D000000 		.word	.L47+1
+ 534 0078 1D000000 		.word	.L47+1
+ 535 007c 1D000000 		.word	.L47+1
+ 536 0080 1D000000 		.word	.L47+1
+ 537 0084 1D000000 		.word	.L47+1
+ 538 0088 1D000000 		.word	.L47+1
+ 539 008c 1D000000 		.word	.L47+1
+ 540 0090 1D000000 		.word	.L47+1
+ 541 0094 1D000000 		.word	.L47+1
+ 542 0098 1D000000 		.word	.L47+1
+ 543 009c 1D000000 		.word	.L47+1
+ 544 00a0 1D000000 		.word	.L47+1
+ 545 00a4 1D000000 		.word	.L47+1
+ 546 00a8 1D000000 		.word	.L47+1
+ 547 00ac 1D000000 		.word	.L47+1
+ 548 00b0 C1010000 		.word	.L50+1
+ 549 00b4 1D000000 		.word	.L47+1
+ 550 00b8 1D000000 		.word	.L47+1
+ 551 00bc 1D000000 		.word	.L47+1
+ 552 00c0 1D000000 		.word	.L47+1
+ 553 00c4 1D000000 		.word	.L47+1
+ 554 00c8 1D000000 		.word	.L47+1
+ 555 00cc 1D000000 		.word	.L47+1
+ 556 00d0 1D000000 		.word	.L47+1
+ 557 00d4 1D000000 		.word	.L47+1
+ 558 00d8 1D000000 		.word	.L47+1
+ 559 00dc 1D000000 		.word	.L47+1
+ 560 00e0 1D000000 		.word	.L47+1
+ 561 00e4 1D000000 		.word	.L47+1
+ 562 00e8 1D000000 		.word	.L47+1
+ 563 00ec 1D000000 		.word	.L47+1
+ 564 00f0 1D000000 		.word	.L47+1
+ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccOz45Cf.s 			page 14
+
+
+ 565 00f4 1D000000 		.word	.L47+1
+ 566 00f8 1D000000 		.word	.L47+1
+ 567 00fc 1D000000 		.word	.L47+1
+ 568 0100 1D000000 		.word	.L47+1
+ 569 0104 1D000000 		.word	.L47+1
+ 570 0108 CF010000 		.word	.L51+1
+ 571 010c 1D000000 		.word	.L47+1
+ 572 0110 1D000000 		.word	.L47+1
+ 573 0114 1D000000 		.word	.L47+1
+ 574 0118 1D000000 		.word	.L47+1
+ 575 011c 1D000000 		.word	.L47+1
+ 576 0120 1D000000 		.word	.L47+1
+ 577 0124 1D000000 		.word	.L47+1
+ 578 0128 1D000000 		.word	.L47+1
+ 579 012c 1D000000 		.word	.L47+1
+ 580 0130 C1010000 		.word	.L50+1
+ 581 0134 11000000 		.word	.L52+1
+ 582 0138 8D010000 		.word	.L53+1
+ 583 013c 1D000000 		.word	.L47+1
+ 584 0140 9B010000 		.word	.L54+1
+ 585 0144 1D000000 		.word	.L47+1
+ 586 0148 1D000000 		.word	.L47+1
+ 587 014c 8D010000 		.word	.L53+1
+ 588 0150 1D000000 		.word	.L47+1
+ 589 0154 1D000000 		.word	.L47+1
+ 590 0158 1D000000 		.word	.L47+1
+ 591 015c 1D000000 		.word	.L47+1
+ 592 0160 1D000000 		.word	.L47+1
+ 593 0164 1D000000 		.word	.L47+1
+ 594 0168 1D000000 		.word	.L47+1
+ 595 016c 1D000000 		.word	.L47+1
+ 596 0170 1D000000 		.word	.L47+1
+ 597 0174 B3010000 		.word	.L55+1
+ 598 0178 1D000000 		.word	.L47+1
+ 599 017c 1D000000 		.word	.L47+1
+ 600 0180 1D000000 		.word	.L47+1
+ 601 0184 1D000000 		.word	.L47+1
+ 602 0188 CF010000 		.word	.L51+1
+ 603              		.p2align 1
+ 604              	.L53:
+  30:Src/myprintf.c **** 				printDec(vargint);
+ 605              		.loc 1 30 0
+ 606 018c 019B     		ldr	r3, [sp, #4]
+ 607 018e 1A1D     		adds	r2, r3, #4
+ 608 0190 0192     		str	r2, [sp, #4]
+  31:Src/myprintf.c **** 				break;
+ 609              		.loc 1 31 0
+ 610 0192 1868     		ldr	r0, [r3]
+ 611 0194 FFF7FEFF 		bl	printDec
+ 612              	.LVL68:
+  32:Src/myprintf.c **** 			case 'f':
+ 613              		.loc 1 32 0
+ 614 0198 40E7     		b	.L47
+ 615              	.L54:
+  34:Src/myprintf.c **** 				/*    va_arg(ap, type), if type is narrow type (char, short, float) an error is given in strict
+ 616              		.loc 1 34 0
+ 617 019a 019B     		ldr	r3, [sp, #4]
+ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccOz45Cf.s 			page 15
+
+
+ 618 019c 0733     		adds	r3, r3, #7
+ 619 019e 23F00703 		bic	r3, r3, #7
+ 620 01a2 03F10802 		add	r2, r3, #8
+ 621 01a6 0192     		str	r2, [sp, #4]
+  37:Src/myprintf.c **** 				break;
+ 622              		.loc 1 37 0
+ 623 01a8 93ED000B 		vldr.64	d0, [r3]
+ 624 01ac FFF7FEFF 		bl	printFlt
+ 625              	.LVL69:
+  38:Src/myprintf.c **** 			case 's':
+ 626              		.loc 1 38 0
+ 627 01b0 34E7     		b	.L47
+ 628              	.L55:
+  40:Src/myprintf.c **** 				printStr(vargpch);
+ 629              		.loc 1 40 0
+ 630 01b2 019B     		ldr	r3, [sp, #4]
+ 631 01b4 1A1D     		adds	r2, r3, #4
+ 632 01b6 0192     		str	r2, [sp, #4]
+  41:Src/myprintf.c **** 				break;
+ 633              		.loc 1 41 0
+ 634 01b8 1868     		ldr	r0, [r3]
+ 635 01ba FFF7FEFF 		bl	printStr
+ 636              	.LVL70:
+  42:Src/myprintf.c **** 			case 'b':
+ 637              		.loc 1 42 0
+ 638 01be 2DE7     		b	.L47
+ 639              	.L50:
+  45:Src/myprintf.c **** 				printBin(vargint);
+ 640              		.loc 1 45 0
+ 641 01c0 019B     		ldr	r3, [sp, #4]
+ 642 01c2 1A1D     		adds	r2, r3, #4
+ 643 01c4 0192     		str	r2, [sp, #4]
+  46:Src/myprintf.c **** 				break;
+ 644              		.loc 1 46 0
+ 645 01c6 1868     		ldr	r0, [r3]
+ 646 01c8 FFF7FEFF 		bl	printBin
+ 647              	.LVL71:
+  47:Src/myprintf.c **** 			case 'x':
+ 648              		.loc 1 47 0
+ 649 01cc 26E7     		b	.L47
+ 650              	.L51:
+  50:Src/myprintf.c **** 				printHex(vargint);
+ 651              		.loc 1 50 0
+ 652 01ce 019B     		ldr	r3, [sp, #4]
+ 653 01d0 1A1D     		adds	r2, r3, #4
+ 654 01d2 0192     		str	r2, [sp, #4]
+  51:Src/myprintf.c **** 				break;
+ 655              		.loc 1 51 0
+ 656 01d4 1868     		ldr	r0, [r3]
+ 657 01d6 FFF7FEFF 		bl	printHex
+ 658              	.LVL72:
+  52:Src/myprintf.c **** 			case '%':
+ 659              		.loc 1 52 0
+ 660 01da 1FE7     		b	.L47
+ 661              	.L48:
+  54:Src/myprintf.c **** 				break;
+ 662              		.loc 1 54 0
+ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccOz45Cf.s 			page 16
+
+
+ 663 01dc 2520     		movs	r0, #37
+ 664 01de FFF7FEFF 		bl	printCh
+ 665              	.LVL73:
+  55:Src/myprintf.c **** 			default:
+ 666              		.loc 1 55 0
+ 667 01e2 1BE7     		b	.L47
+ 668              	.LVL74:
+ 669              	.L46:
+  63:Src/myprintf.c **** 		}
+ 670              		.loc 1 63 0
+ 671 01e4 0134     		adds	r4, r4, #1
+ 672              	.LVL75:
+ 673 01e6 FFF7FEFF 		bl	printCh
+ 674              	.LVL76:
+ 675 01ea 18E7     		b	.L45
+ 676              	.L59:
+  67:Src/myprintf.c **** 
+ 677              		.loc 1 67 0
+ 678 01ec 02B0     		add	sp, sp, #8
+ 679              	.LCFI11:
+ 680              		.cfi_def_cfa_offset 24
+ 681              		@ sp needed
+ 682 01ee BDE81040 		pop	{r4, lr}
+ 683              	.LCFI12:
+ 684              		.cfi_restore 14
+ 685              		.cfi_restore 4
+ 686              		.cfi_def_cfa_offset 16
+ 687              	.LVL77:
+ 688 01f2 04B0     		add	sp, sp, #16
+ 689              	.LCFI13:
+ 690              		.cfi_restore 3
+ 691              		.cfi_restore 2
+ 692              		.cfi_restore 1
+ 693              		.cfi_restore 0
+ 694              		.cfi_def_cfa_offset 0
+ 695 01f4 7047     		bx	lr
+ 696              		.cfi_endproc
+ 697              	.LFE133:
+ 699              		.comm	huart1,64,4
+ 700 01f6 00BF     		.section	.rodata.printBin.str1.4,"aMS",%progbits,1
+ 701              		.align	2
+ 702              	.LC0:
+ 703 0000 306200   		.ascii	"0b\000"
+ 704              		.section	.rodata.printHex.str1.4,"aMS",%progbits,1
+ 705              		.align	2
+ 706              	.LC1:
+ 707 0000 307800   		.ascii	"0x\000"
+ 708              		.text
+ 709              	.Letext0:
+ 710              		.file 2 "c:\\program files (x86)\\gnu tools arm embedded\\7 2018-q2-update\\arm-none-eabi\\include
+ 711              		.file 3 "c:\\program files (x86)\\gnu tools arm embedded\\7 2018-q2-update\\arm-none-eabi\\include
+ 712              		.file 4 "Drivers/CMSIS/Include/core_cm4.h"
+ 713              		.file 5 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/system_stm32f4xx.h"
+ 714              		.file 6 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f405xx.h"
+ 715              		.file 7 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
+ 716              		.file 8 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h"
+ 717              		.file 9 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h"
+ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccOz45Cf.s 			page 17
+
+
+ 718              		.file 10 "c:\\program files (x86)\\gnu tools arm embedded\\7 2018-q2-update\\lib\\gcc\\arm-none-ea
+ 719              		.file 11 "<built-in>"
+ 720              		.file 12 "c:\\program files (x86)\\gnu tools arm embedded\\7 2018-q2-update\\arm-none-eabi\\includ
+ 721              		.file 13 "c:\\program files (x86)\\gnu tools arm embedded\\7 2018-q2-update\\arm-none-eabi\\includ
+ 722              		.file 14 "c:\\program files (x86)\\gnu tools arm embedded\\7 2018-q2-update\\arm-none-eabi\\includ
+ 723              		.file 15 "c:\\program files (x86)\\gnu tools arm embedded\\7 2018-q2-update\\lib\\gcc\\arm-none-ea
+ 724              		.file 16 "c:\\program files (x86)\\gnu tools arm embedded\\7 2018-q2-update\\arm-none-eabi\\includ
+ 725              		.file 17 "Inc/myprintf.h"
+ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccOz45Cf.s 			page 18
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 myprintf.c
+C:\Users\Cairne\AppData\Local\Temp\ccOz45Cf.s:18     .text.printCh:00000000 $t
+C:\Users\Cairne\AppData\Local\Temp\ccOz45Cf.s:25     .text.printCh:00000000 printCh
+C:\Users\Cairne\AppData\Local\Temp\ccOz45Cf.s:58     .text.printCh:0000001c $d
+                            *COM*:00000040 huart1
+C:\Users\Cairne\AppData\Local\Temp\ccOz45Cf.s:63     .text.printDec:00000000 $t
+C:\Users\Cairne\AppData\Local\Temp\ccOz45Cf.s:70     .text.printDec:00000000 printDec
+C:\Users\Cairne\AppData\Local\Temp\ccOz45Cf.s:190    .text.printDec:00000070 $d
+C:\Users\Cairne\AppData\Local\Temp\ccOz45Cf.s:202    .text.printFlt:00000000 $t
+C:\Users\Cairne\AppData\Local\Temp\ccOz45Cf.s:209    .text.printFlt:00000000 printFlt
+C:\Users\Cairne\AppData\Local\Temp\ccOz45Cf.s:264    .text.printFlt:00000048 $d
+C:\Users\Cairne\AppData\Local\Temp\ccOz45Cf.s:270    .text.printStr:00000000 $t
+C:\Users\Cairne\AppData\Local\Temp\ccOz45Cf.s:277    .text.printStr:00000000 printStr
+C:\Users\Cairne\AppData\Local\Temp\ccOz45Cf.s:310    .text.printBin:00000000 $t
+C:\Users\Cairne\AppData\Local\Temp\ccOz45Cf.s:317    .text.printBin:00000000 printBin
+C:\Users\Cairne\AppData\Local\Temp\ccOz45Cf.s:362    .text.printBin:00000030 $d
+C:\Users\Cairne\AppData\Local\Temp\ccOz45Cf.s:367    .text.printHex:00000000 $t
+C:\Users\Cairne\AppData\Local\Temp\ccOz45Cf.s:374    .text.printHex:00000000 printHex
+C:\Users\Cairne\AppData\Local\Temp\ccOz45Cf.s:444    .text.printHex:00000050 $d
+C:\Users\Cairne\AppData\Local\Temp\ccOz45Cf.s:449    .text.myPrint:00000000 $t
+C:\Users\Cairne\AppData\Local\Temp\ccOz45Cf.s:456    .text.myPrint:00000000 myPrint
+C:\Users\Cairne\AppData\Local\Temp\ccOz45Cf.s:519    .text.myPrint:0000003c $d
+C:\Users\Cairne\AppData\Local\Temp\ccOz45Cf.s:603    .text.myPrint:0000018c $t
+C:\Users\Cairne\AppData\Local\Temp\ccOz45Cf.s:701    .rodata.printBin.str1.4:00000000 $d
+C:\Users\Cairne\AppData\Local\Temp\ccOz45Cf.s:705    .rodata.printHex.str1.4:00000000 $d
+
+UNDEFINED SYMBOLS
+HAL_UART_Transmit
+__aeabi_d2iz
+__aeabi_i2d
+__aeabi_dsub
+__aeabi_dmul
