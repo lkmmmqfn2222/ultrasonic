@@ -17,6 +17,8 @@ typedef struct {
     float preDistance;      //
 }ULTRASONIC,*pULTRASONIC;
 
-
+void ledTest(void);
 void pwmTest(void);
+void itoa(uint32_t n,uint8_t s[]);
+void reverseCString(uint8_t* ch);
 #endif

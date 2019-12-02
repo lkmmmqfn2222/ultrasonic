@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccy76rfK.s 			page 1
+ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccT1aOFy.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccy76rfK.s 			page 1
   29:Src/dma.c     **** /*----------------------------------------------------------------------------*/
   30:Src/dma.c     **** 
   31:Src/dma.c     **** /* USER CODE BEGIN 1 */
-ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccy76rfK.s 			page 2
+ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccT1aOFy.s 			page 2
 
 
   32:Src/dma.c     **** 
@@ -85,12 +85,12 @@ ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccy76rfK.s 			page 1
   41:Src/dma.c     ****   /* DMA controller clock enable */
   42:Src/dma.c     ****   __HAL_RCC_DMA2_CLK_ENABLE();
   40              		.loc 1 42 0
-  41 0004 0021     		movs	r1, #0
-  42 0006 0191     		str	r1, [sp, #4]
+  41 0004 0022     		movs	r2, #0
+  42 0006 0192     		str	r2, [sp, #4]
   43 0008 094B     		ldr	r3, .L3
-  44 000a 1A6B     		ldr	r2, [r3, #48]
-  45 000c 42F48002 		orr	r2, r2, #4194304
-  46 0010 1A63     		str	r2, [r3, #48]
+  44 000a 196B     		ldr	r1, [r3, #48]
+  45 000c 41F48001 		orr	r1, r1, #4194304
+  46 0010 1963     		str	r1, [r3, #48]
   47 0012 1B6B     		ldr	r3, [r3, #48]
   48 0014 03F48003 		and	r3, r3, #4194304
   49 0018 0193     		str	r3, [sp, #4]
@@ -99,9 +99,9 @@ ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccy76rfK.s 			page 1
   43:Src/dma.c     **** 
   44:Src/dma.c     ****   /* DMA interrupt init */
   45:Src/dma.c     ****   /* DMA2_Stream2_IRQn interrupt configuration */
-  46:Src/dma.c     ****   HAL_NVIC_SetPriority(DMA2_Stream2_IRQn, 0, 0);
+  46:Src/dma.c     ****   HAL_NVIC_SetPriority(DMA2_Stream2_IRQn, 1, 0);
   52              		.loc 1 46 0
-  53 001c 0A46     		mov	r2, r1
+  53 001c 0121     		movs	r1, #1
   54 001e 3A20     		movs	r0, #58
   55 0020 FFF7FEFF 		bl	HAL_NVIC_SetPriority
   56              	.LVL0:
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccy76rfK.s 			page 1
   64              		.cfi_def_cfa_offset 4
   65              		@ sp needed
   66 002c 5DF804FB 		ldr	pc, [sp], #4
-ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccy76rfK.s 			page 3
+ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccT1aOFy.s 			page 3
 
 
   67              	.L4:
@@ -135,14 +135,14 @@ ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccy76rfK.s 			page 1
   79              		.file 5 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/system_stm32f4xx.h"
   80              		.file 6 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f405xx.h"
   81              		.file 7 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_cortex.h"
-ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccy76rfK.s 			page 4
+ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccT1aOFy.s 			page 4
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 dma.c
-C:\Users\Cairne\AppData\Local\Temp\ccy76rfK.s:18     .text.MX_DMA_Init:00000000 $t
-C:\Users\Cairne\AppData\Local\Temp\ccy76rfK.s:25     .text.MX_DMA_Init:00000000 MX_DMA_Init
-C:\Users\Cairne\AppData\Local\Temp\ccy76rfK.s:70     .text.MX_DMA_Init:00000030 $d
+C:\Users\Cairne\AppData\Local\Temp\ccT1aOFy.s:18     .text.MX_DMA_Init:00000000 $t
+C:\Users\Cairne\AppData\Local\Temp\ccT1aOFy.s:25     .text.MX_DMA_Init:00000000 MX_DMA_Init
+C:\Users\Cairne\AppData\Local\Temp\ccT1aOFy.s:70     .text.MX_DMA_Init:00000030 $d
 
 UNDEFINED SYMBOLS
 HAL_NVIC_SetPriority

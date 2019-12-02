@@ -29,6 +29,7 @@
 /* USER CODE BEGIN Includes */
 #include "myprintf.h"
 #include "test.h"
+#include "leddrv.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -95,7 +96,12 @@ int main(void)
   MX_DMA_Init();
   MX_TIM1_Init();
   /* USER CODE BEGIN 2 */
-  uint8_t i = 0;
+  Lcd_Init();
+  ledTest();
+
+  volatile uint8_t i = 0;
+  uint8_t lcdFlag = 0;
+  uint8_t RTest[] = {};
   extern ULTRASONIC myUltrasonic;
   //HAL_NVIC_DisableIRQ(EXTI15_10_IRQn);
   /* USER CODE END 2 */
@@ -108,12 +114,29 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
     pwmTest();
-    if(printfCnt == 20){
-      printfCnt = 0;
-      myPrint("distance is %f \r\n",myUltrasonic.distance);
+    uint32_t DTemp = (uint32_t)myUltrasonic.distance;
+    if(DTemp <= 999){
+      if(lcdFlag == 0){
+        Gui_DrawFont_GBK16(0,88,RED,GRAY0,"    ");
+        lcdFlag = 1;
+      }
+      else{
+        itoa(DTemp,RTest);
+        uint8_t* myDate = RTest;
+        reverseCString(myDate);
+        Gui_DrawFont_GBK16(4,88,RED,GRAY0,myDate);
+      } 
     }
+    else{
+      itoa(DTemp,RTest);
+      uint8_t* myDate = RTest;
+      reverseCString(myDate);
+      Gui_DrawFont_GBK16(0,88,RED,GRAY0,myDate);
+      lcdFlag = 0;
+    }
+    myPrint("%d distance is:%d mm\r\n",i,(uint32_t)myUltrasonic.distance);
+    Gui_DrawFont_GBK16(50,88,GRAY0,BLUE,"mm");
     HAL_Delay(20);
-    i++;
     printfCnt++;
   }
   /* USER CODE END 3 */

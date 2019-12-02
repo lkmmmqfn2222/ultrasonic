@@ -1,6 +1,8 @@
 {
     "files.associations": {
         "myprintf.h": "c",
-        "test.h": "c"
+        "test.h": "c",
+        "leddrv.h": "c",
+        "stdlib.h": "c"
     }
 }

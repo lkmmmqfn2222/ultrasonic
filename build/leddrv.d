@@ -1,4 +1,4 @@
-build/main.o: Src/main.c Inc/main.h \
+build/leddrv.o: Src/leddrv.c Inc/leddrv.h Inc/main.h \
  Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h \
  Inc/stm32f4xx_hal_conf.h \
  Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h \
@@ -24,10 +24,10 @@ build/main.o: Src/main.c Inc/main.h \
  Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h \
  Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h \
  Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h \
- Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h Inc/dma.h \
- Inc/main.h Inc/tim.h Inc/usart.h Inc/gpio.h Inc/myprintf.h Inc/test.h \
- Inc/tim.h Inc/leddrv.h \
- Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f405xx.h
+ Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h \
+ Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f405xx.h Inc/myfont.h
+
+Inc/leddrv.h:
 
 Inc/main.h:
 
@@ -87,22 +87,6 @@ Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h:
 
 Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h:
 
-Inc/dma.h:
-
-Inc/main.h:
-
-Inc/tim.h:
-
-Inc/usart.h:
-
-Inc/gpio.h:
-
-Inc/myprintf.h:
-
-Inc/test.h:
-
-Inc/tim.h:
-
-Inc/leddrv.h:
-
 Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f405xx.h:
+
+Inc/myfont.h:

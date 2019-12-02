@@ -190,28 +190,6 @@ void SysTick_Handler(void)
   /* USER CODE END SysTick_IRQn 0 */
   HAL_IncTick();
   /* USER CODE BEGIN SysTick_IRQn 1 */
-  // if(delayCnt <= 3 && myUltrasonic.trigFlag == 1){
-  //   delayCnt++;
-  //   if(delayCnt == 3){
-  //     delayCnt = 0;
-  //     myUltrasonic.timCnt0 = __HAL_TIM_GET_COUNTER(&htim1);
-  //     HAL_GPIO_TogglePin(GPIOC,GPIO_PIN_13);
-  //     myUltrasonic.trigFlag = 0;
-  //     myUltrasonic.trigEndFlag = 1;
-  //     __HAL_GPIO_EXTI_CLEAR_IT(GPIO_PIN_11);
-  //     HAL_NVIC_ClearPendingIRQ(EXTI15_10_IRQn);
-  //     HAL_NVIC_EnableIRQ(EXTI15_10_IRQn);
-  //   }
-  // }
-  // if(myUltrasonic.trigFlag == 0 && myUltrasonic.trigEndFlag == 0){
-  //   if(myUltrasonic.timCnt0 >= myUltrasonic.timCnt1){
-  //     myUltrasonic.distance = (65535 - (myUltrasonic.timCnt0 - myUltrasonic.timCnt1))*0.17;
-  //   }
-  //   else{
-  //     myUltrasonic.distance = (myUltrasonic.timCnt1 - myUltrasonic.timCnt0)*0.17;
-  //   }
-    
-  // }
 
   /* USER CODE END SysTick_IRQn 1 */
 }
@@ -249,21 +227,19 @@ void DMA2_Stream2_IRQHandler(void)
   /* USER CODE END DMA2_Stream2_IRQn 0 */
   HAL_DMA_IRQHandler(&hdma_tim1_ch2);
   /* USER CODE BEGIN DMA2_Stream2_IRQn 1 */
-  //HAL_TIM_OC_Start_DMA(&htim1,TIM_CHANNEL_3,2000,1);
+
   /* USER CODE END DMA2_Stream2_IRQn 1 */
 }
 
 /* USER CODE BEGIN 1 */
 void HAL_TIM_PWM_PulseFinishedCallback(TIM_HandleTypeDef* htim){
   if(htim == &htim1){
-    //HAL_TIM_Base_DeInit(&htim1);
     TIM_CCxChannelCmd(&htim1,TIM_CHANNEL_2,TIM_CCx_DISABLE);
     HAL_GPIO_TogglePin(GPIOA,GPIO_PIN_8);
     myUltrasonic.trigFlag = 1;
     myUltrasonic.timCnt0 = __HAL_TIM_GET_COUNTER(&htim1);
     HAL_NVIC_ClearPendingIRQ(EXTI15_10_IRQn);
     HAL_NVIC_EnableIRQ(EXTI15_10_IRQn);
-   // HAL_TIMEx_OCN_Stop(&htim1,TIM_CHANNEL_2);
   }
 }
 
@@ -271,7 +247,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin){
   if(GPIO_Pin == GPIO_PIN_11){
     uint32_t temCnt = __HAL_TIM_GetCounter(&htim1);
     if(temCnt < myUltrasonic.timCnt0){
-      if(1800 <= (65535 - myUltrasonic.timCnt0 + temCnt)){
+      if(1500 <= (65535 - myUltrasonic.timCnt0 + temCnt)){
         myUltrasonic.timCnt1 = __HAL_TIM_GetCounter(&htim1);
         myUltrasonic.distance = (65535 - (myUltrasonic.timCnt0 - myUltrasonic.timCnt1))*0.17;
         if(myUltrasonic.distanceTemp >= 2600){
@@ -287,7 +263,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin){
       }
     }
     else{
-      if(((temCnt - myUltrasonic.timCnt0) <= 20000)&& ((temCnt - myUltrasonic.timCnt0) >= 1800)){
+      if(((temCnt - myUltrasonic.timCnt0) <= 20000)&& ((temCnt - myUltrasonic.timCnt0) >= 1500)){
         myUltrasonic.timCnt1 = __HAL_TIM_GetCounter(&htim1);
         myUltrasonic.distanceTemp = (myUltrasonic.timCnt1 - myUltrasonic.timCnt0)*0.17;
         if(myUltrasonic.distanceTemp >= 2600){

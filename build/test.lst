@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Cairne\AppData\Local\Temp\cc4s4wdy.s 			page 1
+ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccFHZLdn.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -17,153 +17,517 @@ ARM GAS  C:\Users\Cairne\AppData\Local\Temp\cc4s4wdy.s 			page 1
   14              		.text
   15              	.Ltext0:
   16              		.cfi_sections	.debug_frame
-  17              		.section	.text.pwmTest,"ax",%progbits
+  17              		.section	.text.ledTest,"ax",%progbits
   18              		.align	1
-  19              		.global	pwmTest
+  19              		.global	ledTest
   20              		.syntax unified
   21              		.thumb
   22              		.thumb_func
   23              		.fpu fpv4-sp-d16
-  25              	pwmTest:
+  25              	ledTest:
   26              	.LFB130:
   27              		.file 1 "Src/test.c"
    1:Src/test.c    **** #include "test.h"
-   2:Src/test.c    **** 
-   3:Src/test.c    **** uint16_t accStep[ACC_STEP_NUM] ;
-   4:Src/test.c    **** ULTRASONIC myUltrasonic;
-   5:Src/test.c    **** 
-   6:Src/test.c    **** void pwmTest(void){
-  28              		.loc 1 6 0
+   2:Src/test.c    **** #include "leddrv.h"
+   3:Src/test.c    **** #include "string.h"
+   4:Src/test.c    **** 
+   5:Src/test.c    **** uint16_t accStep[ACC_STEP_NUM] ;
+   6:Src/test.c    **** ULTRASONIC myUltrasonic;
+   7:Src/test.c    **** 
+   8:Src/test.c    **** uint8_t testD[] = {"152"};
+   9:Src/test.c    **** 
+  10:Src/test.c    **** void ledTest(void){
+  28              		.loc 1 10 0
   29              		.cfi_startproc
-  30              		@ args = 0, pretend = 0, frame = 0
+  30              		@ args = 0, pretend = 0, frame = 56
   31              		@ frame_needed = 0, uses_anonymous_args = 0
-  32 0000 08B5     		push	{r3, lr}
+  32 0000 70B5     		push	{r4, r5, r6, lr}
   33              	.LCFI0:
-  34              		.cfi_def_cfa_offset 8
-  35              		.cfi_offset 3, -8
-  36              		.cfi_offset 14, -4
-   7:Src/test.c    ****     myUltrasonic.trigEndFlag = 0;
-  37              		.loc 1 7 0
-  38 0002 0B4B     		ldr	r3, .L5
-  39 0004 0022     		movs	r2, #0
-  40 0006 DA70     		strb	r2, [r3, #3]
-   8:Src/test.c    ****     myUltrasonic.trigFlag = 0;  
-  41              		.loc 1 8 0
-  42 0008 9A70     		strb	r2, [r3, #2]
-  43              	.LVL0:
-  44              	.LBB2:
-   9:Src/test.c    ****     for(int i = 1; i < ACC_STEP_NUM ; i++){
-  45              		.loc 1 9 0
-  46 000a 0123     		movs	r3, #1
-  47 000c 07E0     		b	.L2
-  48              	.LVL1:
-  49              	.L3:
-ARM GAS  C:\Users\Cairne\AppData\Local\Temp\cc4s4wdy.s 			page 2
+  34              		.cfi_def_cfa_offset 16
+  35              		.cfi_offset 4, -16
+  36              		.cfi_offset 5, -12
+  37              		.cfi_offset 6, -8
+  38              		.cfi_offset 14, -4
+  39 0002 90B0     		sub	sp, sp, #64
+  40              	.LCFI1:
+  41              		.cfi_def_cfa_offset 80
+  11:Src/test.c    ****     uint8_t testA[] = {"*Cairne Studio*"};
+  42              		.loc 1 11 0
+  43 0004 1B4B     		ldr	r3, .L3
+  44 0006 0CAE     		add	r6, sp, #48
+  45 0008 0FCB     		ldm	r3, {r0, r1, r2, r3}
+  46 000a 86E80F00 		stm	r6, {r0, r1, r2, r3}
+  12:Src/test.c    ****     uint8_t testB[] = {"UltrasonicModule"};
+ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccFHZLdn.s 			page 2
 
 
-  10:Src/test.c    ****         accStep[i] = accStep[i-1] + 11;
-  50              		.loc 1 10 0 discriminator 3
-  51 000e 5A1E     		subs	r2, r3, #1
-  52 0010 0849     		ldr	r1, .L5+4
-  53 0012 31F81220 		ldrh	r2, [r1, r2, lsl #1]
-  54 0016 0B32     		adds	r2, r2, #11
-  55 0018 21F81320 		strh	r2, [r1, r3, lsl #1]	@ movhi
-   9:Src/test.c    ****     for(int i = 1; i < ACC_STEP_NUM ; i++){
-  56              		.loc 1 9 0 discriminator 3
-  57 001c 0133     		adds	r3, r3, #1
-  58              	.LVL2:
-  59              	.L2:
-   9:Src/test.c    ****     for(int i = 1; i < ACC_STEP_NUM ; i++){
-  60              		.loc 1 9 0 is_stmt 0 discriminator 1
-  61 001e 0F2B     		cmp	r3, #15
-  62 0020 F5DD     		ble	.L3
-  63              	.LBE2:
-  11:Src/test.c    ****     }
-  12:Src/test.c    ****     HAL_TIM_OC_Start_DMA(&htim1,TIM_CHANNEL_2,(uint32_t*)accStep,ACC_STEP_NUM);
-  64              		.loc 1 12 0 is_stmt 1
-  65 0022 1023     		movs	r3, #16
-  66              	.LVL3:
-  67 0024 034A     		ldr	r2, .L5+4
-  68 0026 0421     		movs	r1, #4
-  69 0028 0348     		ldr	r0, .L5+8
-  70 002a FFF7FEFF 		bl	HAL_TIM_OC_Start_DMA
-  71              	.LVL4:
-  13:Src/test.c    **** }
-  72              		.loc 1 13 0
-  73 002e 08BD     		pop	{r3, pc}
-  74              	.L6:
-  75              		.align	2
-  76              	.L5:
-  77 0030 00000000 		.word	myUltrasonic
-  78 0034 00000000 		.word	accStep
-  79 0038 00000000 		.word	htim1
-  80              		.cfi_endproc
-  81              	.LFE130:
-  83              		.section	.text.ultrasonicInit,"ax",%progbits
-  84              		.align	1
-  85              		.global	ultrasonicInit
-  86              		.syntax unified
-  87              		.thumb
-  88              		.thumb_func
-  89              		.fpu fpv4-sp-d16
-  91              	ultrasonicInit:
-  92              	.LFB131:
-  14:Src/test.c    **** 
-  15:Src/test.c    **** 
-  16:Src/test.c    **** // void ultralsonicTest(pULTRASONIC mySensor){
-  17:Src/test.c    **** 
-  18:Src/test.c    **** // }
-  19:Src/test.c    **** 
-  20:Src/test.c    **** void ultrasonicInit(pULTRASONIC mySensor){
-  93              		.loc 1 20 0
-  94              		.cfi_startproc
-  95              		@ args = 0, pretend = 0, frame = 0
-ARM GAS  C:\Users\Cairne\AppData\Local\Temp\cc4s4wdy.s 			page 3
+  47              		.loc 1 12 0
+  48 000e 07AC     		add	r4, sp, #28
+  49 0010 194D     		ldr	r5, .L3+4
+  50 0012 0FCD     		ldmia	r5!, {r0, r1, r2, r3}
+  51 0014 0FC4     		stmia	r4!, {r0, r1, r2, r3}
+  52 0016 2B68     		ldr	r3, [r5]
+  53 0018 2370     		strb	r3, [r4]
+  13:Src/test.c    ****     uint8_t testC[] = {"Distance is:"};
+  54              		.loc 1 13 0
+  55 001a 184B     		ldr	r3, .L3+8
+  56 001c 03AC     		add	r4, sp, #12
+  57 001e 0FCB     		ldm	r3, {r0, r1, r2, r3}
+  58 0020 07C4     		stmia	r4!, {r0, r1, r2}
+  59 0022 2370     		strb	r3, [r4]
+  14:Src/test.c    ****     Lcd_Clear(GRAY0);
+  60              		.loc 1 14 0
+  61 0024 4EF67D70 		movw	r0, #61309
+  62 0028 FFF7FEFF 		bl	Lcd_Clear
+  63              	.LVL0:
+  15:Src/test.c    ****     Gui_DrawFont_GBK16(0, 16, GRAY2, WHITE,(uint8_t*) &testA);
+  64              		.loc 1 15 0
+  65 002c 0096     		str	r6, [sp]
+  66 002e 4FF6FF73 		movw	r3, #65535
+  67 0032 44F20822 		movw	r2, #16904
+  68 0036 1021     		movs	r1, #16
+  69 0038 0020     		movs	r0, #0
+  70 003a FFF7FEFF 		bl	Gui_DrawFont_GBK16
+  71              	.LVL1:
+  16:Src/test.c    ****     Gui_DrawFont_GBK16(0,40,GRAY1,GRAY0,(uint8_t*)&testB);
+  72              		.loc 1 16 0
+  73 003e 07AB     		add	r3, sp, #28
+  74 0040 0093     		str	r3, [sp]
+  75 0042 4EF67D73 		movw	r3, #61309
+  76 0046 48F21042 		movw	r2, #33808
+  77 004a 2821     		movs	r1, #40
+  78 004c 0020     		movs	r0, #0
+  79 004e FFF7FEFF 		bl	Gui_DrawFont_GBK16
+  80              	.LVL2:
+  17:Src/test.c    ****     Gui_DrawFont_GBK16(0,64,GRAY2,GRAY0,(uint8_t*)&testC);
+  81              		.loc 1 17 0
+  82 0052 03AB     		add	r3, sp, #12
+  83 0054 0093     		str	r3, [sp]
+  84 0056 4EF67D73 		movw	r3, #61309
+  85 005a 44F20822 		movw	r2, #16904
+  86 005e 4021     		movs	r1, #64
+  87 0060 0020     		movs	r0, #0
+  88 0062 FFF7FEFF 		bl	Gui_DrawFont_GBK16
+  89              	.LVL3:
+  18:Src/test.c    ****     LCD_BLK_SET;
+  90              		.loc 1 18 0
+  91 0066 0122     		movs	r2, #1
+  92 0068 8021     		movs	r1, #128
+  93 006a 0548     		ldr	r0, .L3+12
+  94 006c FFF7FEFF 		bl	HAL_GPIO_WritePin
+  95              	.LVL4:
+  19:Src/test.c    **** }
+  96              		.loc 1 19 0
+ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccFHZLdn.s 			page 3
 
 
-  96              		@ frame_needed = 0, uses_anonymous_args = 0
-  97              		@ link register save eliminated.
-  98              	.LVL5:
-  21:Src/test.c    ****     mySensor->distance = 0;
-  99              		.loc 1 21 0
- 100 0000 0023     		movs	r3, #0
- 101 0002 C360     		str	r3, [r0, #12]	@ float
-  22:Src/test.c    ****     mySensor->num = 1;
- 102              		.loc 1 22 0
- 103 0004 0123     		movs	r3, #1
- 104 0006 0370     		strb	r3, [r0]
-  23:Src/test.c    **** }...
- 105              		.loc 1 23 0
- 106 0008 7047     		bx	lr
- 107              		.cfi_endproc
- 108              	.LFE131:
- 110              		.comm	myUltrasonic,24,4
- 111              		.comm	accStep,32,4
- 112              		.text
- 113              	.Letext0:
- 114              		.file 2 "c:\\program files (x86)\\gnu tools arm embedded\\7 2018-q2-update\\arm-none-eabi\\include
- 115              		.file 3 "c:\\program files (x86)\\gnu tools arm embedded\\7 2018-q2-update\\arm-none-eabi\\include
- 116              		.file 4 "Drivers/CMSIS/Include/core_cm4.h"
- 117              		.file 5 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/system_stm32f4xx.h"
- 118              		.file 6 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f405xx.h"
- 119              		.file 7 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
- 120              		.file 8 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h"
- 121              		.file 9 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h"
- 122              		.file 10 "Inc/tim.h"
- 123              		.file 11 "Inc/test.h"
-ARM GAS  C:\Users\Cairne\AppData\Local\Temp\cc4s4wdy.s 			page 4
+  97 0070 10B0     		add	sp, sp, #64
+  98              	.LCFI2:
+  99              		.cfi_def_cfa_offset 16
+ 100              		@ sp needed
+ 101 0072 70BD     		pop	{r4, r5, r6, pc}
+ 102              	.L4:
+ 103              		.align	2
+ 104              	.L3:
+ 105 0074 00000000 		.word	.LC0
+ 106 0078 10000000 		.word	.LC1
+ 107 007c 24000000 		.word	.LC2
+ 108 0080 00080240 		.word	1073874944
+ 109              		.cfi_endproc
+ 110              	.LFE130:
+ 112              		.section	.text.pwmTest,"ax",%progbits
+ 113              		.align	1
+ 114              		.global	pwmTest
+ 115              		.syntax unified
+ 116              		.thumb
+ 117              		.thumb_func
+ 118              		.fpu fpv4-sp-d16
+ 120              	pwmTest:
+ 121              	.LFB131:
+  20:Src/test.c    **** 
+  21:Src/test.c    **** void pwmTest(void){
+ 122              		.loc 1 21 0
+ 123              		.cfi_startproc
+ 124              		@ args = 0, pretend = 0, frame = 0
+ 125              		@ frame_needed = 0, uses_anonymous_args = 0
+ 126 0000 08B5     		push	{r3, lr}
+ 127              	.LCFI3:
+ 128              		.cfi_def_cfa_offset 8
+ 129              		.cfi_offset 3, -8
+ 130              		.cfi_offset 14, -4
+  22:Src/test.c    ****     myUltrasonic.trigEndFlag = 0;
+ 131              		.loc 1 22 0
+ 132 0002 0B4B     		ldr	r3, .L9
+ 133 0004 0022     		movs	r2, #0
+ 134 0006 DA70     		strb	r2, [r3, #3]
+  23:Src/test.c    ****     myUltrasonic.trigFlag = 0;  
+ 135              		.loc 1 23 0
+ 136 0008 9A70     		strb	r2, [r3, #2]
+ 137              	.LVL5:
+ 138              	.LBB2:
+  24:Src/test.c    ****     for(int i = 1; i < ACC_STEP_NUM ; i++){
+ 139              		.loc 1 24 0
+ 140 000a 0123     		movs	r3, #1
+ 141 000c 07E0     		b	.L6
+ 142              	.LVL6:
+ 143              	.L7:
+  25:Src/test.c    ****         accStep[i] = accStep[i-1] + 11;
+ 144              		.loc 1 25 0 discriminator 3
+ 145 000e 5A1E     		subs	r2, r3, #1
+ 146 0010 0849     		ldr	r1, .L9+4
+ 147 0012 31F81220 		ldrh	r2, [r1, r2, lsl #1]
+ 148 0016 0B32     		adds	r2, r2, #11
+ 149 0018 21F81320 		strh	r2, [r1, r3, lsl #1]	@ movhi
+ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccFHZLdn.s 			page 4
+
+
+  24:Src/test.c    ****     for(int i = 1; i < ACC_STEP_NUM ; i++){
+ 150              		.loc 1 24 0 discriminator 3
+ 151 001c 0133     		adds	r3, r3, #1
+ 152              	.LVL7:
+ 153              	.L6:
+  24:Src/test.c    ****     for(int i = 1; i < ACC_STEP_NUM ; i++){
+ 154              		.loc 1 24 0 is_stmt 0 discriminator 1
+ 155 001e 0F2B     		cmp	r3, #15
+ 156 0020 F5DD     		ble	.L7
+ 157              	.LBE2:
+  26:Src/test.c    ****     }
+  27:Src/test.c    ****     HAL_TIM_OC_Start_DMA(&htim1,TIM_CHANNEL_2,(uint32_t*)accStep,ACC_STEP_NUM);
+ 158              		.loc 1 27 0 is_stmt 1
+ 159 0022 1023     		movs	r3, #16
+ 160              	.LVL8:
+ 161 0024 034A     		ldr	r2, .L9+4
+ 162 0026 0421     		movs	r1, #4
+ 163 0028 0348     		ldr	r0, .L9+8
+ 164 002a FFF7FEFF 		bl	HAL_TIM_OC_Start_DMA
+ 165              	.LVL9:
+  28:Src/test.c    **** }
+ 166              		.loc 1 28 0
+ 167 002e 08BD     		pop	{r3, pc}
+ 168              	.L10:
+ 169              		.align	2
+ 170              	.L9:
+ 171 0030 00000000 		.word	myUltrasonic
+ 172 0034 00000000 		.word	accStep
+ 173 0038 00000000 		.word	htim1
+ 174              		.cfi_endproc
+ 175              	.LFE131:
+ 177              		.section	.text.ultrasonicInit,"ax",%progbits
+ 178              		.align	1
+ 179              		.global	ultrasonicInit
+ 180              		.syntax unified
+ 181              		.thumb
+ 182              		.thumb_func
+ 183              		.fpu fpv4-sp-d16
+ 185              	ultrasonicInit:
+ 186              	.LFB132:
+  29:Src/test.c    **** 
+  30:Src/test.c    **** 
+  31:Src/test.c    **** // void ultralsonicTest(pULTRASONIC mySensor){
+  32:Src/test.c    **** 
+  33:Src/test.c    **** // }
+  34:Src/test.c    **** 
+  35:Src/test.c    **** void ultrasonicInit(pULTRASONIC mySensor){
+ 187              		.loc 1 35 0
+ 188              		.cfi_startproc
+ 189              		@ args = 0, pretend = 0, frame = 0
+ 190              		@ frame_needed = 0, uses_anonymous_args = 0
+ 191              		@ link register save eliminated.
+ 192              	.LVL10:
+  36:Src/test.c    ****     mySensor->distance = 0;
+ 193              		.loc 1 36 0
+ 194 0000 0023     		movs	r3, #0
+ 195 0002 C360     		str	r3, [r0, #12]	@ float
+ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccFHZLdn.s 			page 5
+
+
+  37:Src/test.c    ****     mySensor->num = 1;
+ 196              		.loc 1 37 0
+ 197 0004 0123     		movs	r3, #1
+ 198 0006 0370     		strb	r3, [r0]
+  38:Src/test.c    **** }
+ 199              		.loc 1 38 0
+ 200 0008 7047     		bx	lr
+ 201              		.cfi_endproc
+ 202              	.LFE132:
+ 204              		.section	.text.reverseCString,"ax",%progbits
+ 205              		.align	1
+ 206              		.global	reverseCString
+ 207              		.syntax unified
+ 208              		.thumb
+ 209              		.thumb_func
+ 210              		.fpu fpv4-sp-d16
+ 212              	reverseCString:
+ 213              	.LFB133:
+  39:Src/test.c    **** 
+  40:Src/test.c    **** 
+  41:Src/test.c    **** void reverseCString(uint8_t* ch){
+ 214              		.loc 1 41 0
+ 215              		.cfi_startproc
+ 216              		@ args = 0, pretend = 0, frame = 0
+ 217              		@ frame_needed = 0, uses_anonymous_args = 0
+ 218              	.LVL11:
+ 219 0000 70B5     		push	{r4, r5, r6, lr}
+ 220              	.LCFI4:
+ 221              		.cfi_def_cfa_offset 16
+ 222              		.cfi_offset 4, -16
+ 223              		.cfi_offset 5, -12
+ 224              		.cfi_offset 6, -8
+ 225              		.cfi_offset 14, -4
+ 226 0002 0446     		mov	r4, r0
+  42:Src/test.c    ****     uint8_t size = strlen(ch);
+ 227              		.loc 1 42 0
+ 228 0004 FFF7FEFF 		bl	strlen
+ 229              	.LVL12:
+ 230 0008 C0B2     		uxtb	r0, r0
+ 231              	.LVL13:
+  43:Src/test.c    ****     uint8_t head = 0;
+  44:Src/test.c    ****     uint8_t tail = size - 1;
+ 232              		.loc 1 44 0
+ 233 000a 0138     		subs	r0, r0, #1
+ 234              	.LVL14:
+ 235 000c C0B2     		uxtb	r0, r0
+ 236              	.LVL15:
+  43:Src/test.c    ****     uint8_t head = 0;
+ 237              		.loc 1 43 0
+ 238 000e 0023     		movs	r3, #0
+  45:Src/test.c    ****     while(head < tail){
+ 239              		.loc 1 45 0
+ 240 0010 09E0     		b	.L13
+ 241              	.LVL16:
+ 242              	.L14:
+ 243              	.LBB3:
+  46:Src/test.c    ****         uint8_t temp = ch[head];
+ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccFHZLdn.s 			page 6
+
+
+ 244              		.loc 1 46 0
+ 245 0012 E518     		adds	r5, r4, r3
+ 246 0014 E15C     		ldrb	r1, [r4, r3]	@ zero_extendqisi2
+ 247              	.LVL17:
+  47:Src/test.c    ****         ch[head++] = ch[tail];
+ 248              		.loc 1 47 0
+ 249 0016 2218     		adds	r2, r4, r0
+ 250 0018 0133     		adds	r3, r3, #1
+ 251              	.LVL18:
+ 252 001a DBB2     		uxtb	r3, r3
+ 253              	.LVL19:
+ 254 001c 265C     		ldrb	r6, [r4, r0]	@ zero_extendqisi2
+ 255 001e 2E70     		strb	r6, [r5]
+  48:Src/test.c    ****         ch[tail--] = temp;
+ 256              		.loc 1 48 0
+ 257 0020 0138     		subs	r0, r0, #1
+ 258              	.LVL20:
+ 259 0022 C0B2     		uxtb	r0, r0
+ 260              	.LVL21:
+ 261 0024 1170     		strb	r1, [r2]
+ 262              	.LVL22:
+ 263              	.L13:
+ 264              	.LBE3:
+  45:Src/test.c    ****         uint8_t temp = ch[head];
+ 265              		.loc 1 45 0
+ 266 0026 8342     		cmp	r3, r0
+ 267 0028 F3D3     		bcc	.L14
+  49:Src/test.c    ****     }
+  50:Src/test.c    **** }
+ 268              		.loc 1 50 0
+ 269 002a 70BD     		pop	{r4, r5, r6, pc}
+ 270              		.cfi_endproc
+ 271              	.LFE133:
+ 273              		.section	.text.itoa,"ax",%progbits
+ 274              		.align	1
+ 275              		.global	itoa
+ 276              		.syntax unified
+ 277              		.thumb
+ 278              		.thumb_func
+ 279              		.fpu fpv4-sp-d16
+ 281              	itoa:
+ 282              	.LFB134:
+  51:Src/test.c    **** void itoa(uint32_t n,uint8_t s[]){
+ 283              		.loc 1 51 0
+ 284              		.cfi_startproc
+ 285              		@ args = 0, pretend = 0, frame = 0
+ 286              		@ frame_needed = 0, uses_anonymous_args = 0
+ 287              		@ link register save eliminated.
+ 288              	.LVL23:
+ 289 0000 70B4     		push	{r4, r5, r6}
+ 290              	.LCFI5:
+ 291              		.cfi_def_cfa_offset 12
+ 292              		.cfi_offset 4, -12
+ 293              		.cfi_offset 5, -8
+ 294              		.cfi_offset 6, -4
+  52:Src/test.c    ****     int i,  sign;
+  53:Src/test.c    ****     // uint8_t s[] = {};
+ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccFHZLdn.s 			page 7
+
+
+  54:Src/test.c    ****     if((sign = n) < 0){
+ 295              		.loc 1 54 0
+ 296 0002 0646     		mov	r6, r0
+ 297              	.LVL24:
+ 298 0004 0028     		cmp	r0, #0
+ 299 0006 01DB     		blt	.L22
+ 300              	.LVL25:
+ 301              	.L17:
+  51:Src/test.c    **** void itoa(uint32_t n,uint8_t s[]){
+ 302              		.loc 1 51 0 discriminator 1
+ 303 0008 0022     		movs	r2, #0
+ 304 000a 02E0     		b	.L18
+ 305              	.LVL26:
+ 306              	.L22:
+  55:Src/test.c    ****         n = -n;
+ 307              		.loc 1 55 0
+ 308 000c 4042     		negs	r0, r0
+ 309              	.LVL27:
+ 310 000e FBE7     		b	.L17
+ 311              	.LVL28:
+ 312              	.L20:
+  56:Src/test.c    ****     }
+  57:Src/test.c    ****     i = 0;
+  58:Src/test.c    ****     do{
+  59:Src/test.c    ****         s[i++] = n%10 + '0';
+ 313              		.loc 1 59 0
+ 314 0010 2A46     		mov	r2, r5
+ 315              	.LVL29:
+ 316              	.L18:
+ 317              		.loc 1 59 0 is_stmt 0 discriminator 1
+ 318 0012 0C4B     		ldr	r3, .L24
+ 319 0014 A3FB0043 		umull	r4, r3, r3, r0
+ 320 0018 DB08     		lsrs	r3, r3, #3
+ 321 001a 1C46     		mov	r4, r3
+ 322 001c 03EB8303 		add	r3, r3, r3, lsl #2
+ 323 0020 5D00     		lsls	r5, r3, #1
+ 324 0022 431B     		subs	r3, r0, r5
+ 325 0024 551C     		adds	r5, r2, #1
+ 326              	.LVL30:
+ 327 0026 3033     		adds	r3, r3, #48
+ 328 0028 8B54     		strb	r3, [r1, r2]
+  60:Src/test.c    ****     }while((n /= 10) > 0);
+ 329              		.loc 1 60 0 is_stmt 1 discriminator 1
+ 330 002a 2046     		mov	r0, r4
+ 331              	.LVL31:
+ 332 002c 002C     		cmp	r4, #0
+ 333 002e EFD1     		bne	.L20
+  61:Src/test.c    ****     if(sign < 0){
+ 334              		.loc 1 61 0
+ 335 0030 002E     		cmp	r6, #0
+ 336 0032 03DB     		blt	.L23
+ 337              	.L19:
+  62:Src/test.c    ****         s[i++] = '-';
+  63:Src/test.c    ****     }
+  64:Src/test.c    ****     s[i] = '\0';
+ 338              		.loc 1 64 0
+ 339 0034 0023     		movs	r3, #0
+ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccFHZLdn.s 			page 8
+
+
+ 340 0036 4B55     		strb	r3, [r1, r5]
+  65:Src/test.c    ****     // reverseCString(&s);
+  66:Src/test.c    ****     // sout = s;
+  67:Src/test.c    **** }...
+ 341              		.loc 1 67 0
+ 342 0038 70BC     		pop	{r4, r5, r6}
+ 343              	.LCFI6:
+ 344              		.cfi_remember_state
+ 345              		.cfi_restore 6
+ 346              		.cfi_restore 5
+ 347              		.cfi_restore 4
+ 348              		.cfi_def_cfa_offset 0
+ 349              	.LVL32:
+ 350 003a 7047     		bx	lr
+ 351              	.LVL33:
+ 352              	.L23:
+ 353              	.LCFI7:
+ 354              		.cfi_restore_state
+  62:Src/test.c    ****         s[i++] = '-';
+ 355              		.loc 1 62 0
+ 356 003c 2D23     		movs	r3, #45
+ 357 003e 4B55     		strb	r3, [r1, r5]
+ 358 0040 951C     		adds	r5, r2, #2
+ 359              	.LVL34:
+ 360 0042 F7E7     		b	.L19
+ 361              	.L25:
+ 362              		.align	2
+ 363              	.L24:
+ 364 0044 CDCCCCCC 		.word	-858993459
+ 365              		.cfi_endproc
+ 366              	.LFE134:
+ 368              		.global	testD
+ 369              		.comm	myUltrasonic,24,4
+ 370              		.comm	accStep,32,4
+ 371              		.section	.data.testD,"aw",%progbits
+ 372              		.align	2
+ 375              	testD:
+ 376 0000 31353200 		.ascii	"152\000"
+ 377              		.section	.rodata.ledTest.str1.4,"aMS",%progbits,1
+ 378              		.align	2
+ 379              	.LC0:
+ 380 0000 2A436169 		.ascii	"*Cairne Studio*\000"
+ 380      726E6520 
+ 380      53747564 
+ 380      696F2A00 
+ 381              	.LC1:
+ 382 0010 556C7472 		.ascii	"UltrasonicModule\000"
+ 382      61736F6E 
+ 382      69634D6F 
+ 382      64756C65 
+ 382      00
+ 383 0021 000000   		.space	3
+ 384              	.LC2:
+ 385 0024 44697374 		.ascii	"Distance is:\000"
+ 385      616E6365 
+ 385      2069733A 
+ 385      00
+ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccFHZLdn.s 			page 9
+
+
+ 386              		.text
+ 387              	.Letext0:
+ 388              		.file 2 "c:\\program files (x86)\\gnu tools arm embedded\\7 2018-q2-update\\arm-none-eabi\\include
+ 389              		.file 3 "c:\\program files (x86)\\gnu tools arm embedded\\7 2018-q2-update\\arm-none-eabi\\include
+ 390              		.file 4 "Drivers/CMSIS/Include/core_cm4.h"
+ 391              		.file 5 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/system_stm32f4xx.h"
+ 392              		.file 6 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f405xx.h"
+ 393              		.file 7 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
+ 394              		.file 8 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h"
+ 395              		.file 9 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h"
+ 396              		.file 10 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h"
+ 397              		.file 11 "Inc/tim.h"
+ 398              		.file 12 "Inc/test.h"
+ 399              		.file 13 "c:\\program files (x86)\\gnu tools arm embedded\\7 2018-q2-update\\arm-none-eabi\\includ
+ 400              		.file 14 "c:\\program files (x86)\\gnu tools arm embedded\\7 2018-q2-update\\arm-none-eabi\\includ
+ 401              		.file 15 "c:\\program files (x86)\\gnu tools arm embedded\\7 2018-q2-update\\lib\\gcc\\arm-none-ea
+ 402              		.file 16 "c:\\program files (x86)\\gnu tools arm embedded\\7 2018-q2-update\\arm-none-eabi\\includ
+ 403              		.file 17 "c:\\program files (x86)\\gnu tools arm embedded\\7 2018-q2-update\\arm-none-eabi\\includ
+ 404              		.file 18 "Inc/leddrv.h"
+ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccFHZLdn.s 			page 10
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 test.c
-C:\Users\Cairne\AppData\Local\Temp\cc4s4wdy.s:18     .text.pwmTest:00000000 $t
-C:\Users\Cairne\AppData\Local\Temp\cc4s4wdy.s:25     .text.pwmTest:00000000 pwmTest
-C:\Users\Cairne\AppData\Local\Temp\cc4s4wdy.s:77     .text.pwmTest:00000030 $d
+C:\Users\Cairne\AppData\Local\Temp\ccFHZLdn.s:18     .text.ledTest:00000000 $t
+C:\Users\Cairne\AppData\Local\Temp\ccFHZLdn.s:25     .text.ledTest:00000000 ledTest
+C:\Users\Cairne\AppData\Local\Temp\ccFHZLdn.s:105    .text.ledTest:00000074 $d
+C:\Users\Cairne\AppData\Local\Temp\ccFHZLdn.s:113    .text.pwmTest:00000000 $t
+C:\Users\Cairne\AppData\Local\Temp\ccFHZLdn.s:120    .text.pwmTest:00000000 pwmTest
+C:\Users\Cairne\AppData\Local\Temp\ccFHZLdn.s:171    .text.pwmTest:00000030 $d
                             *COM*:00000018 myUltrasonic
                             *COM*:00000020 accStep
-C:\Users\Cairne\AppData\Local\Temp\cc4s4wdy.s:84     .text.ultrasonicInit:00000000 $t
-C:\Users\Cairne\AppData\Local\Temp\cc4s4wdy.s:91     .text.ultrasonicInit:00000000 ultrasonicInit
+C:\Users\Cairne\AppData\Local\Temp\ccFHZLdn.s:178    .text.ultrasonicInit:00000000 $t
+C:\Users\Cairne\AppData\Local\Temp\ccFHZLdn.s:185    .text.ultrasonicInit:00000000 ultrasonicInit
+C:\Users\Cairne\AppData\Local\Temp\ccFHZLdn.s:205    .text.reverseCString:00000000 $t
+C:\Users\Cairne\AppData\Local\Temp\ccFHZLdn.s:212    .text.reverseCString:00000000 reverseCString
+C:\Users\Cairne\AppData\Local\Temp\ccFHZLdn.s:274    .text.itoa:00000000 $t
+C:\Users\Cairne\AppData\Local\Temp\ccFHZLdn.s:281    .text.itoa:00000000 itoa
+C:\Users\Cairne\AppData\Local\Temp\ccFHZLdn.s:364    .text.itoa:00000044 $d
+C:\Users\Cairne\AppData\Local\Temp\ccFHZLdn.s:375    .data.testD:00000000 testD
+C:\Users\Cairne\AppData\Local\Temp\ccFHZLdn.s:372    .data.testD:00000000 $d
+C:\Users\Cairne\AppData\Local\Temp\ccFHZLdn.s:378    .rodata.ledTest.str1.4:00000000 $d
 
 UNDEFINED SYMBOLS
+Lcd_Clear
+Gui_DrawFont_GBK16
+HAL_GPIO_WritePin
 HAL_TIM_OC_Start_DMA
 htim1
+strlen

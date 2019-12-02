@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccsZlQ8h.s 			page 1
+ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccATUBge.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccsZlQ8h.s 			page 1
   29:Src/stm32f4xx_it.c **** 
   30:Src/stm32f4xx_it.c **** /* Private typedef -----------------------------------------------------------*/
   31:Src/stm32f4xx_it.c **** /* USER CODE BEGIN TD */
-ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccsZlQ8h.s 			page 2
+ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccATUBge.s 			page 2
 
 
   32:Src/stm32f4xx_it.c **** extern ULTRASONIC myUltrasonic;
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccsZlQ8h.s 			page 1
   77:Src/stm32f4xx_it.c ****   /* USER CODE END NonMaskableInt_IRQn 0 */
   78:Src/stm32f4xx_it.c ****   HAL_RCC_NMI_IRQHandler();
   37              		.loc 1 78 0
-ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccsZlQ8h.s 			page 3
+ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccATUBge.s 			page 3
 
 
   38 0002 FFF7FEFF 		bl	HAL_RCC_NMI_IRQHandler
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccsZlQ8h.s 			page 1
   99:Src/stm32f4xx_it.c **** /**
  100:Src/stm32f4xx_it.c ****   * @brief This function handles Memory management fault.
  101:Src/stm32f4xx_it.c ****   */
-ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccsZlQ8h.s 			page 4
+ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccATUBge.s 			page 4
 
 
  102:Src/stm32f4xx_it.c **** void MemManage_Handler(void)
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccsZlQ8h.s 			page 1
  117              	.LFB134:
  119:Src/stm32f4xx_it.c ****   /* USER CODE BEGIN BusFault_IRQn 0 */
  120:Src/stm32f4xx_it.c **** 
-ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccsZlQ8h.s 			page 5
+ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccATUBge.s 			page 5
 
 
  121:Src/stm32f4xx_it.c ****   /* USER CODE END BusFault_IRQn 0 */
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccsZlQ8h.s 			page 1
  151:Src/stm32f4xx_it.c ****   /* USER CODE END SVCall_IRQn 0 */
  152:Src/stm32f4xx_it.c ****   /* USER CODE BEGIN SVCall_IRQn 1 */
  153:Src/stm32f4xx_it.c **** 
-ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccsZlQ8h.s 			page 6
+ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccATUBge.s 			page 6
 
 
  154:Src/stm32f4xx_it.c ****   /* USER CODE END SVCall_IRQn 1 */
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccsZlQ8h.s 			page 1
  181              		@ args = 0, pretend = 0, frame = 0
  182              		@ frame_needed = 0, uses_anonymous_args = 0
  183              		@ link register save eliminated.
-ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccsZlQ8h.s 			page 7
+ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccATUBge.s 			page 7
 
 
  175:Src/stm32f4xx_it.c ****   /* USER CODE BEGIN PendSV_IRQn 0 */
@@ -404,35 +404,10 @@ ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccsZlQ8h.s 			page 1
  209 0002 FFF7FEFF 		bl	HAL_IncTick
  210              	.LVL1:
  192:Src/stm32f4xx_it.c ****   /* USER CODE BEGIN SysTick_IRQn 1 */
- 193:Src/stm32f4xx_it.c ****   // if(delayCnt <= 3 && myUltrasonic.trigFlag == 1){
- 194:Src/stm32f4xx_it.c ****   //   delayCnt++;
- 195:Src/stm32f4xx_it.c ****   //   if(delayCnt == 3){
- 196:Src/stm32f4xx_it.c ****   //     delayCnt = 0;
- 197:Src/stm32f4xx_it.c ****   //     myUltrasonic.timCnt0 = __HAL_TIM_GET_COUNTER(&htim1);
- 198:Src/stm32f4xx_it.c ****   //     HAL_GPIO_TogglePin(GPIOC,GPIO_PIN_13);
- 199:Src/stm32f4xx_it.c ****   //     myUltrasonic.trigFlag = 0;
- 200:Src/stm32f4xx_it.c ****   //     myUltrasonic.trigEndFlag = 1;
- 201:Src/stm32f4xx_it.c ****   //     __HAL_GPIO_EXTI_CLEAR_IT(GPIO_PIN_11);
- 202:Src/stm32f4xx_it.c ****   //     HAL_NVIC_ClearPendingIRQ(EXTI15_10_IRQn);
- 203:Src/stm32f4xx_it.c ****   //     HAL_NVIC_EnableIRQ(EXTI15_10_IRQn);
- 204:Src/stm32f4xx_it.c ****   //   }
- 205:Src/stm32f4xx_it.c ****   // }
- 206:Src/stm32f4xx_it.c ****   // if(myUltrasonic.trigFlag == 0 && myUltrasonic.trigEndFlag == 0){
-ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccsZlQ8h.s 			page 8
-
-
- 207:Src/stm32f4xx_it.c ****   //   if(myUltrasonic.timCnt0 >= myUltrasonic.timCnt1){
- 208:Src/stm32f4xx_it.c ****   //     myUltrasonic.distance = (65535 - (myUltrasonic.timCnt0 - myUltrasonic.timCnt1))*0.17;
- 209:Src/stm32f4xx_it.c ****   //   }
- 210:Src/stm32f4xx_it.c ****   //   else{
- 211:Src/stm32f4xx_it.c ****   //     myUltrasonic.distance = (myUltrasonic.timCnt1 - myUltrasonic.timCnt0)*0.17;
- 212:Src/stm32f4xx_it.c ****   //   }
- 213:Src/stm32f4xx_it.c ****     
- 214:Src/stm32f4xx_it.c ****   // }
- 215:Src/stm32f4xx_it.c **** 
- 216:Src/stm32f4xx_it.c ****   /* USER CODE END SysTick_IRQn 1 */
- 217:Src/stm32f4xx_it.c **** }
- 211              		.loc 1 217 0
+ 193:Src/stm32f4xx_it.c **** 
+ 194:Src/stm32f4xx_it.c ****   /* USER CODE END SysTick_IRQn 1 */
+ 195:Src/stm32f4xx_it.c **** }
+ 211              		.loc 1 195 0
  212 0006 08BD     		pop	{r3, pc}
  213              		.cfi_endproc
  214              	.LFE138:
@@ -443,22 +418,25 @@ ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccsZlQ8h.s 			page 1
  220              		.thumb
  221              		.thumb_func
  222              		.fpu fpv4-sp-d16
+ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccATUBge.s 			page 8
+
+
  224              	EXTI15_10_IRQHandler:
  225              	.LFB139:
- 218:Src/stm32f4xx_it.c **** 
- 219:Src/stm32f4xx_it.c **** /******************************************************************************/
- 220:Src/stm32f4xx_it.c **** /* STM32F4xx Peripheral Interrupt Handlers                                    */
- 221:Src/stm32f4xx_it.c **** /* Add here the Interrupt Handlers for the used peripherals.                  */
- 222:Src/stm32f4xx_it.c **** /* For the available peripheral interrupt handler names,                      */
- 223:Src/stm32f4xx_it.c **** /* please refer to the startup file (startup_stm32f4xx.s).                    */
- 224:Src/stm32f4xx_it.c **** /******************************************************************************/
- 225:Src/stm32f4xx_it.c **** 
- 226:Src/stm32f4xx_it.c **** /**
- 227:Src/stm32f4xx_it.c ****   * @brief This function handles EXTI line[15:10] interrupts.
- 228:Src/stm32f4xx_it.c ****   */
- 229:Src/stm32f4xx_it.c **** void EXTI15_10_IRQHandler(void)
- 230:Src/stm32f4xx_it.c **** {
- 226              		.loc 1 230 0
+ 196:Src/stm32f4xx_it.c **** 
+ 197:Src/stm32f4xx_it.c **** /******************************************************************************/
+ 198:Src/stm32f4xx_it.c **** /* STM32F4xx Peripheral Interrupt Handlers                                    */
+ 199:Src/stm32f4xx_it.c **** /* Add here the Interrupt Handlers for the used peripherals.                  */
+ 200:Src/stm32f4xx_it.c **** /* For the available peripheral interrupt handler names,                      */
+ 201:Src/stm32f4xx_it.c **** /* please refer to the startup file (startup_stm32f4xx.s).                    */
+ 202:Src/stm32f4xx_it.c **** /******************************************************************************/
+ 203:Src/stm32f4xx_it.c **** 
+ 204:Src/stm32f4xx_it.c **** /**
+ 205:Src/stm32f4xx_it.c ****   * @brief This function handles EXTI line[15:10] interrupts.
+ 206:Src/stm32f4xx_it.c ****   */
+ 207:Src/stm32f4xx_it.c **** void EXTI15_10_IRQHandler(void)
+ 208:Src/stm32f4xx_it.c **** {
+ 226              		.loc 1 208 0
  227              		.cfi_startproc
  228              		@ args = 0, pretend = 0, frame = 0
  229              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -467,33 +445,30 @@ ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccsZlQ8h.s 			page 1
  232              		.cfi_def_cfa_offset 8
  233              		.cfi_offset 3, -8
  234              		.cfi_offset 14, -4
- 231:Src/stm32f4xx_it.c ****   /* USER CODE BEGIN EXTI15_10_IRQn 0 */
- 232:Src/stm32f4xx_it.c **** 
- 233:Src/stm32f4xx_it.c ****   /* USER CODE END EXTI15_10_IRQn 0 */
- 234:Src/stm32f4xx_it.c ****   HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_11);
- 235              		.loc 1 234 0
+ 209:Src/stm32f4xx_it.c ****   /* USER CODE BEGIN EXTI15_10_IRQn 0 */
+ 210:Src/stm32f4xx_it.c **** 
+ 211:Src/stm32f4xx_it.c ****   /* USER CODE END EXTI15_10_IRQn 0 */
+ 212:Src/stm32f4xx_it.c ****   HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_11);
+ 235              		.loc 1 212 0
  236 0002 4FF40060 		mov	r0, #2048
  237 0006 FFF7FEFF 		bl	HAL_GPIO_EXTI_IRQHandler
  238              	.LVL2:
- 235:Src/stm32f4xx_it.c ****   /* USER CODE BEGIN EXTI15_10_IRQn 1 */
- 236:Src/stm32f4xx_it.c ****   myUltrasonic.timCnt1 = __HAL_TIM_GetCounter(&htim1);
- 239              		.loc 1 236 0
-ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccsZlQ8h.s 			page 9
-
-
+ 213:Src/stm32f4xx_it.c ****   /* USER CODE BEGIN EXTI15_10_IRQn 1 */
+ 214:Src/stm32f4xx_it.c ****   myUltrasonic.timCnt1 = __HAL_TIM_GetCounter(&htim1);
+ 239              		.loc 1 214 0
  240 000a 044B     		ldr	r3, .L18
  241 000c 1B68     		ldr	r3, [r3]
  242 000e 5A6A     		ldr	r2, [r3, #36]
  243 0010 034B     		ldr	r3, .L18+4
  244 0012 9A60     		str	r2, [r3, #8]
- 237:Src/stm32f4xx_it.c ****   
- 238:Src/stm32f4xx_it.c ****   myUltrasonic.trigEndFlag = 0;
- 245              		.loc 1 238 0
+ 215:Src/stm32f4xx_it.c ****   
+ 216:Src/stm32f4xx_it.c ****   myUltrasonic.trigEndFlag = 0;
+ 245              		.loc 1 216 0
  246 0014 0022     		movs	r2, #0
  247 0016 DA70     		strb	r2, [r3, #3]
- 239:Src/stm32f4xx_it.c ****   /* USER CODE END EXTI15_10_IRQn 1 */
- 240:Src/stm32f4xx_it.c **** }
- 248              		.loc 1 240 0
+ 217:Src/stm32f4xx_it.c ****   /* USER CODE END EXTI15_10_IRQn 1 */
+ 218:Src/stm32f4xx_it.c **** }
+ 248              		.loc 1 218 0
  249 0018 08BD     		pop	{r3, pc}
  250              	.L19:
  251 001a 00BF     		.align	2
@@ -503,6 +478,9 @@ ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccsZlQ8h.s 			page 1
  255              		.cfi_endproc
  256              	.LFE139:
  258              		.section	.text.DMA2_Stream2_IRQHandler,"ax",%progbits
+ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccATUBge.s 			page 9
+
+
  259              		.align	1
  260              		.global	DMA2_Stream2_IRQHandler
  261              		.syntax unified
@@ -511,13 +489,13 @@ ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccsZlQ8h.s 			page 1
  264              		.fpu fpv4-sp-d16
  266              	DMA2_Stream2_IRQHandler:
  267              	.LFB140:
- 241:Src/stm32f4xx_it.c **** 
- 242:Src/stm32f4xx_it.c **** /**
- 243:Src/stm32f4xx_it.c ****   * @brief This function handles DMA2 stream2 global interrupt.
- 244:Src/stm32f4xx_it.c ****   */
- 245:Src/stm32f4xx_it.c **** void DMA2_Stream2_IRQHandler(void)
- 246:Src/stm32f4xx_it.c **** {
- 268              		.loc 1 246 0
+ 219:Src/stm32f4xx_it.c **** 
+ 220:Src/stm32f4xx_it.c **** /**
+ 221:Src/stm32f4xx_it.c ****   * @brief This function handles DMA2 stream2 global interrupt.
+ 222:Src/stm32f4xx_it.c ****   */
+ 223:Src/stm32f4xx_it.c **** void DMA2_Stream2_IRQHandler(void)
+ 224:Src/stm32f4xx_it.c **** {
+ 268              		.loc 1 224 0
  269              		.cfi_startproc
  270              		@ args = 0, pretend = 0, frame = 0
  271              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -526,28 +504,25 @@ ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccsZlQ8h.s 			page 1
  274              		.cfi_def_cfa_offset 8
  275              		.cfi_offset 3, -8
  276              		.cfi_offset 14, -4
- 247:Src/stm32f4xx_it.c ****   /* USER CODE BEGIN DMA2_Stream2_IRQn 0 */
- 248:Src/stm32f4xx_it.c ****   TIM_CCxChannelCmd(&htim1,TIM_CHANNEL_2,TIM_CCx_DISABLE);
- 277              		.loc 1 248 0
+ 225:Src/stm32f4xx_it.c ****   /* USER CODE BEGIN DMA2_Stream2_IRQn 0 */
+ 226:Src/stm32f4xx_it.c ****   TIM_CCxChannelCmd(&htim1,TIM_CHANNEL_2,TIM_CCx_DISABLE);
+ 277              		.loc 1 226 0
  278 0002 0022     		movs	r2, #0
  279 0004 0421     		movs	r1, #4
  280 0006 0348     		ldr	r0, .L22
  281 0008 FFF7FEFF 		bl	TIM_CCxChannelCmd
  282              	.LVL3:
- 249:Src/stm32f4xx_it.c ****   /* USER CODE END DMA2_Stream2_IRQn 0 */
- 250:Src/stm32f4xx_it.c ****   HAL_DMA_IRQHandler(&hdma_tim1_ch2);
- 283              		.loc 1 250 0
+ 227:Src/stm32f4xx_it.c ****   /* USER CODE END DMA2_Stream2_IRQn 0 */
+ 228:Src/stm32f4xx_it.c ****   HAL_DMA_IRQHandler(&hdma_tim1_ch2);
+ 283              		.loc 1 228 0
  284 000c 0248     		ldr	r0, .L22+4
-ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccsZlQ8h.s 			page 10
-
-
  285 000e FFF7FEFF 		bl	HAL_DMA_IRQHandler
  286              	.LVL4:
- 251:Src/stm32f4xx_it.c ****   /* USER CODE BEGIN DMA2_Stream2_IRQn 1 */
- 252:Src/stm32f4xx_it.c ****   //HAL_TIM_OC_Start_DMA(&htim1,TIM_CHANNEL_3,2000,1);
- 253:Src/stm32f4xx_it.c ****   /* USER CODE END DMA2_Stream2_IRQn 1 */
- 254:Src/stm32f4xx_it.c **** }
- 287              		.loc 1 254 0
+ 229:Src/stm32f4xx_it.c ****   /* USER CODE BEGIN DMA2_Stream2_IRQn 1 */
+ 230:Src/stm32f4xx_it.c **** 
+ 231:Src/stm32f4xx_it.c ****   /* USER CODE END DMA2_Stream2_IRQn 1 */
+ 232:Src/stm32f4xx_it.c **** }
+ 287              		.loc 1 232 0
  288 0012 08BD     		pop	{r3, pc}
  289              	.L23:
  290              		.align	2
@@ -563,33 +538,35 @@ ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccsZlQ8h.s 			page 1
  301              		.thumb
  302              		.thumb_func
  303              		.fpu fpv4-sp-d16
+ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccATUBge.s 			page 10
+
+
  305              	HAL_TIM_PWM_PulseFinishedCallback:
  306              	.LFB141:
- 255:Src/stm32f4xx_it.c **** 
- 256:Src/stm32f4xx_it.c **** /* USER CODE BEGIN 1 */
- 257:Src/stm32f4xx_it.c **** void HAL_TIM_PWM_PulseFinishedCallback(TIM_HandleTypeDef* htim){
- 307              		.loc 1 257 0
+ 233:Src/stm32f4xx_it.c **** 
+ 234:Src/stm32f4xx_it.c **** /* USER CODE BEGIN 1 */
+ 235:Src/stm32f4xx_it.c **** void HAL_TIM_PWM_PulseFinishedCallback(TIM_HandleTypeDef* htim){
+ 307              		.loc 1 235 0
  308              		.cfi_startproc
  309              		@ args = 0, pretend = 0, frame = 0
  310              		@ frame_needed = 0, uses_anonymous_args = 0
  311              	.LVL5:
- 258:Src/stm32f4xx_it.c ****   if(htim == &htim1){
- 312              		.loc 1 258 0
+ 236:Src/stm32f4xx_it.c ****   if(htim == &htim1){
+ 312              		.loc 1 236 0
  313 0000 0E4B     		ldr	r3, .L31
  314 0002 8342     		cmp	r3, r0
  315 0004 00D0     		beq	.L30
  316 0006 7047     		bx	lr
  317              	.L30:
- 257:Src/stm32f4xx_it.c ****   if(htim == &htim1){
- 318              		.loc 1 257 0
+ 235:Src/stm32f4xx_it.c ****   if(htim == &htim1){
+ 318              		.loc 1 235 0
  319 0008 10B5     		push	{r4, lr}
  320              	.LCFI4:
  321              		.cfi_def_cfa_offset 8
  322              		.cfi_offset 4, -8
  323              		.cfi_offset 14, -4
- 259:Src/stm32f4xx_it.c ****     //HAL_TIM_Base_DeInit(&htim1);
- 260:Src/stm32f4xx_it.c ****     TIM_CCxChannelCmd(&htim1,TIM_CHANNEL_2,TIM_CCx_DISABLE);
- 324              		.loc 1 260 0
+ 237:Src/stm32f4xx_it.c ****     TIM_CCxChannelCmd(&htim1,TIM_CHANNEL_2,TIM_CCx_DISABLE);
+ 324              		.loc 1 237 0
  325 000a 1C46     		mov	r4, r3
  326 000c 0022     		movs	r2, #0
  327 000e 0421     		movs	r1, #4
@@ -597,39 +574,38 @@ ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccsZlQ8h.s 			page 1
  329              	.LVL6:
  330 0012 FFF7FEFF 		bl	TIM_CCxChannelCmd
  331              	.LVL7:
- 261:Src/stm32f4xx_it.c ****     HAL_GPIO_TogglePin(GPIOA,GPIO_PIN_8);
-ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccsZlQ8h.s 			page 11
-
-
- 332              		.loc 1 261 0
+ 238:Src/stm32f4xx_it.c ****     HAL_GPIO_TogglePin(GPIOA,GPIO_PIN_8);
+ 332              		.loc 1 238 0
  333 0016 4FF48071 		mov	r1, #256
  334 001a 0948     		ldr	r0, .L31+4
  335 001c FFF7FEFF 		bl	HAL_GPIO_TogglePin
  336              	.LVL8:
- 262:Src/stm32f4xx_it.c ****     myUltrasonic.trigFlag = 1;
- 337              		.loc 1 262 0
+ 239:Src/stm32f4xx_it.c ****     myUltrasonic.trigFlag = 1;
+ 337              		.loc 1 239 0
  338 0020 084B     		ldr	r3, .L31+8
  339 0022 0122     		movs	r2, #1
  340 0024 9A70     		strb	r2, [r3, #2]
- 263:Src/stm32f4xx_it.c ****     myUltrasonic.timCnt0 = __HAL_TIM_GET_COUNTER(&htim1);
- 341              		.loc 1 263 0
+ 240:Src/stm32f4xx_it.c ****     myUltrasonic.timCnt0 = __HAL_TIM_GET_COUNTER(&htim1);
+ 341              		.loc 1 240 0
  342 0026 2268     		ldr	r2, [r4]
  343 0028 526A     		ldr	r2, [r2, #36]
  344 002a 5A60     		str	r2, [r3, #4]
- 264:Src/stm32f4xx_it.c ****     HAL_NVIC_ClearPendingIRQ(EXTI15_10_IRQn);
- 345              		.loc 1 264 0
+ 241:Src/stm32f4xx_it.c ****     HAL_NVIC_ClearPendingIRQ(EXTI15_10_IRQn);
+ 345              		.loc 1 241 0
  346 002c 2820     		movs	r0, #40
  347 002e FFF7FEFF 		bl	HAL_NVIC_ClearPendingIRQ
  348              	.LVL9:
- 265:Src/stm32f4xx_it.c ****     HAL_NVIC_EnableIRQ(EXTI15_10_IRQn);
- 349              		.loc 1 265 0
+ 242:Src/stm32f4xx_it.c ****     HAL_NVIC_EnableIRQ(EXTI15_10_IRQn);
+ 349              		.loc 1 242 0
  350 0032 2820     		movs	r0, #40
+ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccATUBge.s 			page 11
+
+
  351 0034 FFF7FEFF 		bl	HAL_NVIC_EnableIRQ
  352              	.LVL10:
- 266:Src/stm32f4xx_it.c ****    // HAL_TIMEx_OCN_Stop(&htim1,TIM_CHANNEL_2);
- 267:Src/stm32f4xx_it.c ****   }
- 268:Src/stm32f4xx_it.c **** }
- 353              		.loc 1 268 0
+ 243:Src/stm32f4xx_it.c ****   }
+ 244:Src/stm32f4xx_it.c **** }
+ 353              		.loc 1 244 0
  354 0038 10BD     		pop	{r4, pc}
  355              	.L32:
  356 003a 00BF     		.align	2
@@ -651,293 +627,291 @@ ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccsZlQ8h.s 			page 1
  373              		.fpu fpv4-sp-d16
  375              	HAL_GPIO_EXTI_Callback:
  376              	.LFB142:
- 269:Src/stm32f4xx_it.c **** 
- 270:Src/stm32f4xx_it.c **** void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin){
- 377              		.loc 1 270 0
+ 245:Src/stm32f4xx_it.c **** 
+ 246:Src/stm32f4xx_it.c **** void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin){
+ 377              		.loc 1 246 0
  378              		.cfi_startproc
  379              		@ args = 0, pretend = 0, frame = 0
  380              		@ frame_needed = 0, uses_anonymous_args = 0
  381              	.LVL11:
-ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccsZlQ8h.s 			page 12
-
-
- 271:Src/stm32f4xx_it.c ****   if(GPIO_Pin == GPIO_PIN_11){
- 382              		.loc 1 271 0
+ 247:Src/stm32f4xx_it.c ****   if(GPIO_Pin == GPIO_PIN_11){
+ 382              		.loc 1 247 0
  383 0000 B0F5006F 		cmp	r0, #2048
  384 0004 00D0     		beq	.L55
  385 0006 7047     		bx	lr
  386              	.L55:
- 270:Src/stm32f4xx_it.c ****   if(GPIO_Pin == GPIO_PIN_11){
- 387              		.loc 1 270 0
+ 246:Src/stm32f4xx_it.c ****   if(GPIO_Pin == GPIO_PIN_11){
+ 387              		.loc 1 246 0
  388 0008 10B5     		push	{r4, lr}
  389              	.LCFI5:
  390              		.cfi_def_cfa_offset 8
  391              		.cfi_offset 4, -8
  392              		.cfi_offset 14, -4
  393              	.LBB2:
- 272:Src/stm32f4xx_it.c ****     uint32_t temCnt = __HAL_TIM_GetCounter(&htim1);
- 394              		.loc 1 272 0
+ 248:Src/stm32f4xx_it.c ****     uint32_t temCnt = __HAL_TIM_GetCounter(&htim1);
+ 394              		.loc 1 248 0
  395 000a 3B4B     		ldr	r3, .L56+8
  396 000c 1A68     		ldr	r2, [r3]
  397 000e 536A     		ldr	r3, [r2, #36]
  398              	.LVL12:
- 273:Src/stm32f4xx_it.c ****     if(temCnt < myUltrasonic.timCnt0){
- 399              		.loc 1 273 0
+ 249:Src/stm32f4xx_it.c ****     if(temCnt < myUltrasonic.timCnt0){
+ 399              		.loc 1 249 0
  400 0010 3A49     		ldr	r1, .L56+12
  401 0012 4868     		ldr	r0, [r1, #4]
+ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccATUBge.s 			page 12
+
+
  402              	.LVL13:
  403 0014 9842     		cmp	r0, r3
- 404 0016 2DD9     		bls	.L35
- 274:Src/stm32f4xx_it.c ****       if(1800 <= (65535 - myUltrasonic.timCnt0 + temCnt)){
- 405              		.loc 1 274 0
+ 404 0016 2ED9     		bls	.L35
+ 250:Src/stm32f4xx_it.c ****       if(1500 <= (65535 - myUltrasonic.timCnt0 + temCnt)){
+ 405              		.loc 1 250 0
  406 0018 1B1A     		subs	r3, r3, r0
  407              	.LVL14:
  408 001a 03F57F43 		add	r3, r3, #65280
  409 001e FF33     		adds	r3, r3, #255
- 410 0020 B3F5E16F 		cmp	r3, #1800
- 411 0024 1AD3     		bcc	.L33
- 275:Src/stm32f4xx_it.c ****         myUltrasonic.timCnt1 = __HAL_TIM_GetCounter(&htim1);
- 412              		.loc 1 275 0
- 413 0026 536A     		ldr	r3, [r2, #36]
- 414 0028 0C46     		mov	r4, r1
- 415 002a 8B60     		str	r3, [r1, #8]
- 276:Src/stm32f4xx_it.c ****         myUltrasonic.distance = (65535 - (myUltrasonic.timCnt0 - myUltrasonic.timCnt1))*0.17;
- 277:Src/stm32f4xx_it.c ****         if(myUltrasonic.distanceTemp >= 2600){
- 416              		.loc 1 277 0
- 417 002c D4ED047A 		vldr.32	s15, [r4, #16]
- 418 0030 9FED337A 		vldr.32	s14, .L56+16
- 419 0034 F4EEC77A 		vcmpe.f32	s15, s14
- 420 0038 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
- 421 003c 0FDB     		blt	.L49
- 278:Src/stm32f4xx_it.c ****           myUltrasonic.distanceTemp = 2600;
- 422              		.loc 1 278 0
- 423 003e 2346     		mov	r3, r4
- 424 0040 83ED047A 		vstr.32	s14, [r3, #16]
- 425              	.L38:
- 279:Src/stm32f4xx_it.c ****         }
- 280:Src/stm32f4xx_it.c ****         else if(myUltrasonic.distanceTemp <= 100){
- 281:Src/stm32f4xx_it.c ****           myUltrasonic.distanceTemp = 100;
- 282:Src/stm32f4xx_it.c ****         }
-ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccsZlQ8h.s 			page 13
+ 410 0020 40F2DB51 		movw	r1, #1499
+ 411 0024 8B42     		cmp	r3, r1
+ 412 0026 1AD9     		bls	.L33
+ 251:Src/stm32f4xx_it.c ****         myUltrasonic.timCnt1 = __HAL_TIM_GetCounter(&htim1);
+ 413              		.loc 1 251 0
+ 414 0028 536A     		ldr	r3, [r2, #36]
+ 415 002a 344C     		ldr	r4, .L56+12
+ 416 002c A360     		str	r3, [r4, #8]
+ 252:Src/stm32f4xx_it.c ****         myUltrasonic.distance = (65535 - (myUltrasonic.timCnt0 - myUltrasonic.timCnt1))*0.17;
+ 253:Src/stm32f4xx_it.c ****         if(myUltrasonic.distanceTemp >= 2600){
+ 417              		.loc 1 253 0
+ 418 002e D4ED047A 		vldr.32	s15, [r4, #16]
+ 419 0032 9FED337A 		vldr.32	s14, .L56+16
+ 420 0036 F4EEC77A 		vcmpe.f32	s15, s14
+ 421 003a F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 422 003e 0FDB     		blt	.L49
+ 254:Src/stm32f4xx_it.c ****           myUltrasonic.distanceTemp = 2600;
+ 423              		.loc 1 254 0
+ 424 0040 2346     		mov	r3, r4
+ 425 0042 83ED047A 		vstr.32	s14, [r3, #16]
+ 426              	.L38:
+ 255:Src/stm32f4xx_it.c ****         }
+ 256:Src/stm32f4xx_it.c ****         else if(myUltrasonic.distanceTemp <= 100){
+ 257:Src/stm32f4xx_it.c ****           myUltrasonic.distanceTemp = 100;
+ 258:Src/stm32f4xx_it.c ****         }
+ 259:Src/stm32f4xx_it.c ****         myUltrasonic.distance = myUltrasonic.distanceTemp;
+ 427              		.loc 1 259 0
+ 428 0046 2D4B     		ldr	r3, .L56+12
+ 429 0048 1A69     		ldr	r2, [r3, #16]	@ float
+ 430 004a DA60     		str	r2, [r3, #12]	@ float
+ 260:Src/stm32f4xx_it.c ****         myUltrasonic.preDistance = myUltrasonic.distance;
+ 431              		.loc 1 260 0
+ 432 004c 5A61     		str	r2, [r3, #20]	@ float
+ 261:Src/stm32f4xx_it.c ****         HAL_GPIO_TogglePin(GPIOC,GPIO_PIN_14);
+ 433              		.loc 1 261 0
+ 434 004e 4FF48041 		mov	r1, #16384
+ 435 0052 2C48     		ldr	r0, .L56+20
+ 436 0054 FFF7FEFF 		bl	HAL_GPIO_TogglePin
+ 437              	.LVL15:
+ 262:Src/stm32f4xx_it.c ****         HAL_NVIC_DisableIRQ(EXTI15_10_IRQn);
+ 438              		.loc 1 262 0
+ 439 0058 2820     		movs	r0, #40
+ 440 005a FFF7FEFF 		bl	HAL_NVIC_DisableIRQ
+ 441              	.LVL16:
+ 442              	.L33:
+ 443              	.LBE2:
+ 263:Src/stm32f4xx_it.c ****       }
+ 264:Src/stm32f4xx_it.c ****     }
+ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccATUBge.s 			page 13
 
 
- 283:Src/stm32f4xx_it.c ****         myUltrasonic.distance = myUltrasonic.distanceTemp;
- 426              		.loc 1 283 0
- 427 0044 2D4B     		ldr	r3, .L56+12
- 428 0046 1A69     		ldr	r2, [r3, #16]	@ float
- 429 0048 DA60     		str	r2, [r3, #12]	@ float
- 284:Src/stm32f4xx_it.c ****         myUltrasonic.preDistance = myUltrasonic.distance;
- 430              		.loc 1 284 0
- 431 004a 5A61     		str	r2, [r3, #20]	@ float
- 285:Src/stm32f4xx_it.c ****         HAL_GPIO_TogglePin(GPIOC,GPIO_PIN_14);
- 432              		.loc 1 285 0
- 433 004c 4FF48041 		mov	r1, #16384
- 434 0050 2C48     		ldr	r0, .L56+20
- 435 0052 FFF7FEFF 		bl	HAL_GPIO_TogglePin
- 436              	.LVL15:
- 286:Src/stm32f4xx_it.c ****         HAL_NVIC_DisableIRQ(EXTI15_10_IRQn);
- 437              		.loc 1 286 0
- 438 0056 2820     		movs	r0, #40
- 439 0058 FFF7FEFF 		bl	HAL_NVIC_DisableIRQ
- 440              	.LVL16:
- 441              	.L33:
- 442              	.LBE2:
- 287:Src/stm32f4xx_it.c ****       }
- 288:Src/stm32f4xx_it.c ****     }
- 289:Src/stm32f4xx_it.c ****     else{
- 290:Src/stm32f4xx_it.c ****       if(((temCnt - myUltrasonic.timCnt0) <= 20000)&& ((temCnt - myUltrasonic.timCnt0) >= 1800)){
- 291:Src/stm32f4xx_it.c ****         myUltrasonic.timCnt1 = __HAL_TIM_GetCounter(&htim1);
- 292:Src/stm32f4xx_it.c ****         myUltrasonic.distanceTemp = (myUltrasonic.timCnt1 - myUltrasonic.timCnt0)*0.17;
- 293:Src/stm32f4xx_it.c ****         if(myUltrasonic.distanceTemp >= 2600){
- 294:Src/stm32f4xx_it.c ****           myUltrasonic.distanceTemp = 2600;
- 295:Src/stm32f4xx_it.c ****         }
- 296:Src/stm32f4xx_it.c ****         else if(myUltrasonic.distanceTemp <= 100){
- 297:Src/stm32f4xx_it.c ****           myUltrasonic.distanceTemp = 100;
- 298:Src/stm32f4xx_it.c ****         }
- 299:Src/stm32f4xx_it.c ****         myUltrasonic.distance = myUltrasonic.distanceTemp;
- 300:Src/stm32f4xx_it.c ****         myUltrasonic.preDistance = myUltrasonic.distance;
- 301:Src/stm32f4xx_it.c ****         HAL_GPIO_TogglePin(GPIOC,GPIO_PIN_14);
- 302:Src/stm32f4xx_it.c ****         HAL_NVIC_DisableIRQ(EXTI15_10_IRQn);
- 303:Src/stm32f4xx_it.c ****       }
- 304:Src/stm32f4xx_it.c ****       else{
- 305:Src/stm32f4xx_it.c ****         myUltrasonic.distance =  myUltrasonic.preDistance;
- 306:Src/stm32f4xx_it.c ****       }
- 307:Src/stm32f4xx_it.c ****     }
- 308:Src/stm32f4xx_it.c ****   }
- 309:Src/stm32f4xx_it.c **** }
- 443              		.loc 1 309 0
- 444 005c 10BD     		pop	{r4, pc}
- 445              	.L49:
- 446              	.LBB3:
- 280:Src/stm32f4xx_it.c ****           myUltrasonic.distanceTemp = 100;
- 447              		.loc 1 280 0
- 448 005e 9FED2A7A 		vldr.32	s14, .L56+24
- 449 0062 F4EEC77A 		vcmpe.f32	s15, s14
- 450 0066 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
- 451 006a EBD8     		bhi	.L38
- 281:Src/stm32f4xx_it.c ****         }
- 452              		.loc 1 281 0
- 453 006c 234B     		ldr	r3, .L56+12
-ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccsZlQ8h.s 			page 14
+ 265:Src/stm32f4xx_it.c ****     else{
+ 266:Src/stm32f4xx_it.c ****       if(((temCnt - myUltrasonic.timCnt0) <= 20000)&& ((temCnt - myUltrasonic.timCnt0) >= 1500)){
+ 267:Src/stm32f4xx_it.c ****         myUltrasonic.timCnt1 = __HAL_TIM_GetCounter(&htim1);
+ 268:Src/stm32f4xx_it.c ****         myUltrasonic.distanceTemp = (myUltrasonic.timCnt1 - myUltrasonic.timCnt0)*0.17;
+ 269:Src/stm32f4xx_it.c ****         if(myUltrasonic.distanceTemp >= 2600){
+ 270:Src/stm32f4xx_it.c ****           myUltrasonic.distanceTemp = 2600;
+ 271:Src/stm32f4xx_it.c ****         }
+ 272:Src/stm32f4xx_it.c ****         else if(myUltrasonic.distanceTemp <= 100){
+ 273:Src/stm32f4xx_it.c ****           myUltrasonic.distanceTemp = 100;
+ 274:Src/stm32f4xx_it.c ****         }
+ 275:Src/stm32f4xx_it.c ****         myUltrasonic.distance = myUltrasonic.distanceTemp;
+ 276:Src/stm32f4xx_it.c ****         myUltrasonic.preDistance = myUltrasonic.distance;
+ 277:Src/stm32f4xx_it.c ****         HAL_GPIO_TogglePin(GPIOC,GPIO_PIN_14);
+ 278:Src/stm32f4xx_it.c ****         HAL_NVIC_DisableIRQ(EXTI15_10_IRQn);
+ 279:Src/stm32f4xx_it.c ****       }
+ 280:Src/stm32f4xx_it.c ****       else{
+ 281:Src/stm32f4xx_it.c ****         myUltrasonic.distance =  myUltrasonic.preDistance;
+ 282:Src/stm32f4xx_it.c ****       }
+ 283:Src/stm32f4xx_it.c ****     }
+ 284:Src/stm32f4xx_it.c ****   }
+ 285:Src/stm32f4xx_it.c **** }
+ 444              		.loc 1 285 0
+ 445 005e 10BD     		pop	{r4, pc}
+ 446              	.L49:
+ 447              	.LBB3:
+ 256:Src/stm32f4xx_it.c ****           myUltrasonic.distanceTemp = 100;
+ 448              		.loc 1 256 0
+ 449 0060 9FED297A 		vldr.32	s14, .L56+24
+ 450 0064 F4EEC77A 		vcmpe.f32	s15, s14
+ 451 0068 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 452 006c EBD8     		bhi	.L38
+ 257:Src/stm32f4xx_it.c ****         }
+ 453              		.loc 1 257 0
+ 454 006e 234B     		ldr	r3, .L56+12
+ 455 0070 83ED047A 		vstr.32	s14, [r3, #16]
+ 456 0074 E7E7     		b	.L38
+ 457              	.LVL17:
+ 458              	.L35:
+ 266:Src/stm32f4xx_it.c ****         myUltrasonic.timCnt1 = __HAL_TIM_GetCounter(&htim1);
+ 459              		.loc 1 266 0
+ 460 0076 1B1A     		subs	r3, r3, r0
+ 461              	.LVL18:
+ 462 0078 A3F2DC53 		subw	r3, r3, #1500
+ 463 007c 44F64401 		movw	r1, #18500
+ 464 0080 8B42     		cmp	r3, r1
+ 465 0082 31D8     		bhi	.L40
+ 267:Src/stm32f4xx_it.c ****         myUltrasonic.distanceTemp = (myUltrasonic.timCnt1 - myUltrasonic.timCnt0)*0.17;
+ 466              		.loc 1 267 0
+ 467 0084 536A     		ldr	r3, [r2, #36]
+ 468 0086 1D4C     		ldr	r4, .L56+12
+ 469 0088 A360     		str	r3, [r4, #8]
+ 268:Src/stm32f4xx_it.c ****         if(myUltrasonic.distanceTemp >= 2600){
+ 470              		.loc 1 268 0
+ 471 008a 181A     		subs	r0, r3, r0
+ 472 008c FFF7FEFF 		bl	__aeabi_ui2d
+ 473              	.LVL19:
+ 474 0090 17A3     		adr	r3, .L56
+ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccATUBge.s 			page 14
 
 
- 454 006e 83ED047A 		vstr.32	s14, [r3, #16]
- 455 0072 E7E7     		b	.L38
- 456              	.LVL17:
- 457              	.L35:
- 290:Src/stm32f4xx_it.c ****         myUltrasonic.timCnt1 = __HAL_TIM_GetCounter(&htim1);
- 458              		.loc 1 290 0
- 459 0074 1B1A     		subs	r3, r3, r0
- 460              	.LVL18:
- 461 0076 A3F5E163 		sub	r3, r3, #1800
- 462 007a 44F21871 		movw	r1, #18200
- 463 007e 8B42     		cmp	r3, r1
- 464 0080 31D8     		bhi	.L40
- 291:Src/stm32f4xx_it.c ****         myUltrasonic.distanceTemp = (myUltrasonic.timCnt1 - myUltrasonic.timCnt0)*0.17;
- 465              		.loc 1 291 0
- 466 0082 536A     		ldr	r3, [r2, #36]
- 467 0084 1D4C     		ldr	r4, .L56+12
- 468 0086 A360     		str	r3, [r4, #8]
- 292:Src/stm32f4xx_it.c ****         if(myUltrasonic.distanceTemp >= 2600){
- 469              		.loc 1 292 0
- 470 0088 181A     		subs	r0, r3, r0
- 471 008a FFF7FEFF 		bl	__aeabi_ui2d
- 472              	.LVL19:
- 473 008e 18A3     		adr	r3, .L56
- 474 0090 D3E90023 		ldrd	r2, [r3]
- 475 0094 FFF7FEFF 		bl	__aeabi_dmul
- 476              	.LVL20:
- 477 0098 FFF7FEFF 		bl	__aeabi_d2f
- 478              	.LVL21:
- 479 009c 07EE900A 		vmov	s15, r0
- 480 00a0 2061     		str	r0, [r4, #16]	@ float
- 293:Src/stm32f4xx_it.c ****           myUltrasonic.distanceTemp = 2600;
- 481              		.loc 1 293 0
- 482 00a2 9FED177A 		vldr.32	s14, .L56+16
- 483 00a6 F4EEC77A 		vcmpe.f32	s15, s14
- 484 00aa F1EE10FA 		vmrs	APSR_nzcv, FPSCR
- 485 00ae 0FDB     		blt	.L50
- 294:Src/stm32f4xx_it.c ****         }
- 486              		.loc 1 294 0
- 487 00b0 2346     		mov	r3, r4
- 488 00b2 83ED047A 		vstr.32	s14, [r3, #16]
- 489              	.L43:
- 299:Src/stm32f4xx_it.c ****         myUltrasonic.preDistance = myUltrasonic.distance;
- 490              		.loc 1 299 0
- 491 00b6 114B     		ldr	r3, .L56+12
- 492 00b8 1A69     		ldr	r2, [r3, #16]	@ float
- 493 00ba DA60     		str	r2, [r3, #12]	@ float
- 300:Src/stm32f4xx_it.c ****         HAL_GPIO_TogglePin(GPIOC,GPIO_PIN_14);
- 494              		.loc 1 300 0
- 495 00bc 5A61     		str	r2, [r3, #20]	@ float
- 301:Src/stm32f4xx_it.c ****         HAL_NVIC_DisableIRQ(EXTI15_10_IRQn);
- 496              		.loc 1 301 0
- 497 00be 4FF48041 		mov	r1, #16384
- 498 00c2 1048     		ldr	r0, .L56+20
- 499 00c4 FFF7FEFF 		bl	HAL_GPIO_TogglePin
- 500              	.LVL22:
- 302:Src/stm32f4xx_it.c ****       }
- 501              		.loc 1 302 0
-ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccsZlQ8h.s 			page 15
+ 475 0092 D3E90023 		ldrd	r2, [r3]
+ 476 0096 FFF7FEFF 		bl	__aeabi_dmul
+ 477              	.LVL20:
+ 478 009a FFF7FEFF 		bl	__aeabi_d2f
+ 479              	.LVL21:
+ 480 009e 07EE900A 		vmov	s15, r0
+ 481 00a2 2061     		str	r0, [r4, #16]	@ float
+ 269:Src/stm32f4xx_it.c ****           myUltrasonic.distanceTemp = 2600;
+ 482              		.loc 1 269 0
+ 483 00a4 9FED167A 		vldr.32	s14, .L56+16
+ 484 00a8 F4EEC77A 		vcmpe.f32	s15, s14
+ 485 00ac F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 486 00b0 0FDB     		blt	.L50
+ 270:Src/stm32f4xx_it.c ****         }
+ 487              		.loc 1 270 0
+ 488 00b2 2346     		mov	r3, r4
+ 489 00b4 83ED047A 		vstr.32	s14, [r3, #16]
+ 490              	.L43:
+ 275:Src/stm32f4xx_it.c ****         myUltrasonic.preDistance = myUltrasonic.distance;
+ 491              		.loc 1 275 0
+ 492 00b8 104B     		ldr	r3, .L56+12
+ 493 00ba 1A69     		ldr	r2, [r3, #16]	@ float
+ 494 00bc DA60     		str	r2, [r3, #12]	@ float
+ 276:Src/stm32f4xx_it.c ****         HAL_GPIO_TogglePin(GPIOC,GPIO_PIN_14);
+ 495              		.loc 1 276 0
+ 496 00be 5A61     		str	r2, [r3, #20]	@ float
+ 277:Src/stm32f4xx_it.c ****         HAL_NVIC_DisableIRQ(EXTI15_10_IRQn);
+ 497              		.loc 1 277 0
+ 498 00c0 4FF48041 		mov	r1, #16384
+ 499 00c4 0F48     		ldr	r0, .L56+20
+ 500 00c6 FFF7FEFF 		bl	HAL_GPIO_TogglePin
+ 501              	.LVL22:
+ 278:Src/stm32f4xx_it.c ****       }
+ 502              		.loc 1 278 0
+ 503 00ca 2820     		movs	r0, #40
+ 504 00cc FFF7FEFF 		bl	HAL_NVIC_DisableIRQ
+ 505              	.LVL23:
+ 506 00d0 C5E7     		b	.L33
+ 507              	.L50:
+ 272:Src/stm32f4xx_it.c ****           myUltrasonic.distanceTemp = 100;
+ 508              		.loc 1 272 0
+ 509 00d2 9FED0D7A 		vldr.32	s14, .L56+24
+ 510 00d6 F4EEC77A 		vcmpe.f32	s15, s14
+ 511 00da F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 512 00de EBD8     		bhi	.L43
+ 273:Src/stm32f4xx_it.c ****         }
+ 513              		.loc 1 273 0
+ 514 00e0 064B     		ldr	r3, .L56+12
+ 515 00e2 83ED047A 		vstr.32	s14, [r3, #16]
+ 516 00e6 E7E7     		b	.L43
+ 517              	.L40:
+ 281:Src/stm32f4xx_it.c ****       }
+ 518              		.loc 1 281 0
+ 519 00e8 044B     		ldr	r3, .L56+12
+ 520 00ea 5A69     		ldr	r2, [r3, #20]	@ float
+ 521 00ec DA60     		str	r2, [r3, #12]	@ float
+ 522              	.LBE3:
+ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccATUBge.s 			page 15
 
 
- 502 00c8 2820     		movs	r0, #40
- 503 00ca FFF7FEFF 		bl	HAL_NVIC_DisableIRQ
- 504              	.LVL23:
- 505 00ce C5E7     		b	.L33
- 506              	.L50:
- 296:Src/stm32f4xx_it.c ****           myUltrasonic.distanceTemp = 100;
- 507              		.loc 1 296 0
- 508 00d0 9FED0D7A 		vldr.32	s14, .L56+24
- 509 00d4 F4EEC77A 		vcmpe.f32	s15, s14
- 510 00d8 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
- 511 00dc EBD8     		bhi	.L43
- 297:Src/stm32f4xx_it.c ****         }
- 512              		.loc 1 297 0
- 513 00de 074B     		ldr	r3, .L56+12
- 514 00e0 83ED047A 		vstr.32	s14, [r3, #16]
- 515 00e4 E7E7     		b	.L43
- 516              	.L40:
- 305:Src/stm32f4xx_it.c ****       }
- 517              		.loc 1 305 0
- 518 00e6 054B     		ldr	r3, .L56+12
- 519 00e8 5A69     		ldr	r2, [r3, #20]	@ float
- 520 00ea DA60     		str	r2, [r3, #12]	@ float
- 521              	.LBE3:
- 522              		.loc 1 309 0
- 523 00ec B6E7     		b	.L33
- 524              	.L57:
- 525 00ee 00BF     		.align	3
- 526              	.L56:
- 527 00f0 C3F5285C 		.word	1546188227
- 528 00f4 8FC2C53F 		.word	1069925007
- 529 00f8 00000000 		.word	htim1
- 530 00fc 00000000 		.word	myUltrasonic
- 531 0100 00802245 		.word	1159888896
- 532 0104 00080240 		.word	1073874944
- 533 0108 0000C842 		.word	1120403456
- 534              		.cfi_endproc
- 535              	.LFE142:
- 537              		.global	delayCnt
- 538              		.section	.bss.delayCnt,"aw",%nobits
- 541              	delayCnt:
- 542 0000 00       		.space	1
- 543              		.text
- 544              	.Letext0:
- 545              		.file 2 "c:\\program files (x86)\\gnu tools arm embedded\\7 2018-q2-update\\arm-none-eabi\\include
- 546              		.file 3 "c:\\program files (x86)\\gnu tools arm embedded\\7 2018-q2-update\\arm-none-eabi\\include
- 547              		.file 4 "Drivers/CMSIS/Include/core_cm4.h"
- 548              		.file 5 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/system_stm32f4xx.h"
- 549              		.file 6 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f405xx.h"
- 550              		.file 7 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
- 551              		.file 8 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h"
- 552              		.file 9 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h"
- 553              		.file 10 "Inc/tim.h"
- 554              		.file 11 "Inc/test.h"
- 555              		.file 12 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h"
- 556              		.file 13 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_cortex.h"
- 557              		.file 14 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h"
- 558              		.file 15 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h"
-ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccsZlQ8h.s 			page 16
-
-
-ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccsZlQ8h.s 			page 17
+ 523              		.loc 1 285 0
+ 524 00ee B6E7     		b	.L33
+ 525              	.L57:
+ 526              		.align	3
+ 527              	.L56:
+ 528 00f0 C3F5285C 		.word	1546188227
+ 529 00f4 8FC2C53F 		.word	1069925007
+ 530 00f8 00000000 		.word	htim1
+ 531 00fc 00000000 		.word	myUltrasonic
+ 532 0100 00802245 		.word	1159888896
+ 533 0104 00080240 		.word	1073874944
+ 534 0108 0000C842 		.word	1120403456
+ 535              		.cfi_endproc
+ 536              	.LFE142:
+ 538              		.global	delayCnt
+ 539              		.section	.bss.delayCnt,"aw",%nobits
+ 542              	delayCnt:
+ 543 0000 00       		.space	1
+ 544              		.text
+ 545              	.Letext0:
+ 546              		.file 2 "c:\\program files (x86)\\gnu tools arm embedded\\7 2018-q2-update\\arm-none-eabi\\include
+ 547              		.file 3 "c:\\program files (x86)\\gnu tools arm embedded\\7 2018-q2-update\\arm-none-eabi\\include
+ 548              		.file 4 "Drivers/CMSIS/Include/core_cm4.h"
+ 549              		.file 5 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/system_stm32f4xx.h"
+ 550              		.file 6 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f405xx.h"
+ 551              		.file 7 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
+ 552              		.file 8 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h"
+ 553              		.file 9 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h"
+ 554              		.file 10 "Inc/tim.h"
+ 555              		.file 11 "Inc/test.h"
+ 556              		.file 12 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h"
+ 557              		.file 13 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_cortex.h"
+ 558              		.file 14 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h"
+ 559              		.file 15 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h"
+ARM GAS  C:\Users\Cairne\AppData\Local\Temp\ccATUBge.s 			page 16
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 stm32f4xx_it.c
-C:\Users\Cairne\AppData\Local\Temp\ccsZlQ8h.s:18     .text.NMI_Handler:00000000 $t
-C:\Users\Cairne\AppData\Local\Temp\ccsZlQ8h.s:25     .text.NMI_Handler:00000000 NMI_Handler
-C:\Users\Cairne\AppData\Local\Temp\ccsZlQ8h.s:46     .text.HardFault_Handler:00000000 $t
-C:\Users\Cairne\AppData\Local\Temp\ccsZlQ8h.s:53     .text.HardFault_Handler:00000000 HardFault_Handler
-C:\Users\Cairne\AppData\Local\Temp\ccsZlQ8h.s:67     .text.MemManage_Handler:00000000 $t
-C:\Users\Cairne\AppData\Local\Temp\ccsZlQ8h.s:74     .text.MemManage_Handler:00000000 MemManage_Handler
-C:\Users\Cairne\AppData\Local\Temp\ccsZlQ8h.s:88     .text.BusFault_Handler:00000000 $t
-C:\Users\Cairne\AppData\Local\Temp\ccsZlQ8h.s:95     .text.BusFault_Handler:00000000 BusFault_Handler
-C:\Users\Cairne\AppData\Local\Temp\ccsZlQ8h.s:109    .text.UsageFault_Handler:00000000 $t
-C:\Users\Cairne\AppData\Local\Temp\ccsZlQ8h.s:116    .text.UsageFault_Handler:00000000 UsageFault_Handler
-C:\Users\Cairne\AppData\Local\Temp\ccsZlQ8h.s:130    .text.SVC_Handler:00000000 $t
-C:\Users\Cairne\AppData\Local\Temp\ccsZlQ8h.s:137    .text.SVC_Handler:00000000 SVC_Handler
-C:\Users\Cairne\AppData\Local\Temp\ccsZlQ8h.s:150    .text.DebugMon_Handler:00000000 $t
-C:\Users\Cairne\AppData\Local\Temp\ccsZlQ8h.s:157    .text.DebugMon_Handler:00000000 DebugMon_Handler
-C:\Users\Cairne\AppData\Local\Temp\ccsZlQ8h.s:170    .text.PendSV_Handler:00000000 $t
-C:\Users\Cairne\AppData\Local\Temp\ccsZlQ8h.s:177    .text.PendSV_Handler:00000000 PendSV_Handler
-C:\Users\Cairne\AppData\Local\Temp\ccsZlQ8h.s:190    .text.SysTick_Handler:00000000 $t
-C:\Users\Cairne\AppData\Local\Temp\ccsZlQ8h.s:197    .text.SysTick_Handler:00000000 SysTick_Handler
-C:\Users\Cairne\AppData\Local\Temp\ccsZlQ8h.s:217    .text.EXTI15_10_IRQHandler:00000000 $t
-C:\Users\Cairne\AppData\Local\Temp\ccsZlQ8h.s:224    .text.EXTI15_10_IRQHandler:00000000 EXTI15_10_IRQHandler
-C:\Users\Cairne\AppData\Local\Temp\ccsZlQ8h.s:253    .text.EXTI15_10_IRQHandler:0000001c $d
-C:\Users\Cairne\AppData\Local\Temp\ccsZlQ8h.s:259    .text.DMA2_Stream2_IRQHandler:00000000 $t
-C:\Users\Cairne\AppData\Local\Temp\ccsZlQ8h.s:266    .text.DMA2_Stream2_IRQHandler:00000000 DMA2_Stream2_IRQHandler
-C:\Users\Cairne\AppData\Local\Temp\ccsZlQ8h.s:292    .text.DMA2_Stream2_IRQHandler:00000014 $d
-C:\Users\Cairne\AppData\Local\Temp\ccsZlQ8h.s:298    .text.HAL_TIM_PWM_PulseFinishedCallback:00000000 $t
-C:\Users\Cairne\AppData\Local\Temp\ccsZlQ8h.s:305    .text.HAL_TIM_PWM_PulseFinishedCallback:00000000 HAL_TIM_PWM_PulseFinishedCallback
-C:\Users\Cairne\AppData\Local\Temp\ccsZlQ8h.s:358    .text.HAL_TIM_PWM_PulseFinishedCallback:0000003c $d
-C:\Users\Cairne\AppData\Local\Temp\ccsZlQ8h.s:368    .text.HAL_GPIO_EXTI_Callback:00000000 $t
-C:\Users\Cairne\AppData\Local\Temp\ccsZlQ8h.s:375    .text.HAL_GPIO_EXTI_Callback:00000000 HAL_GPIO_EXTI_Callback
-C:\Users\Cairne\AppData\Local\Temp\ccsZlQ8h.s:527    .text.HAL_GPIO_EXTI_Callback:000000f0 $d
-C:\Users\Cairne\AppData\Local\Temp\ccsZlQ8h.s:541    .bss.delayCnt:00000000 delayCnt
-C:\Users\Cairne\AppData\Local\Temp\ccsZlQ8h.s:542    .bss.delayCnt:00000000 $d
+C:\Users\Cairne\AppData\Local\Temp\ccATUBge.s:18     .text.NMI_Handler:00000000 $t
+C:\Users\Cairne\AppData\Local\Temp\ccATUBge.s:25     .text.NMI_Handler:00000000 NMI_Handler
+C:\Users\Cairne\AppData\Local\Temp\ccATUBge.s:46     .text.HardFault_Handler:00000000 $t
+C:\Users\Cairne\AppData\Local\Temp\ccATUBge.s:53     .text.HardFault_Handler:00000000 HardFault_Handler
+C:\Users\Cairne\AppData\Local\Temp\ccATUBge.s:67     .text.MemManage_Handler:00000000 $t
+C:\Users\Cairne\AppData\Local\Temp\ccATUBge.s:74     .text.MemManage_Handler:00000000 MemManage_Handler
+C:\Users\Cairne\AppData\Local\Temp\ccATUBge.s:88     .text.BusFault_Handler:00000000 $t
+C:\Users\Cairne\AppData\Local\Temp\ccATUBge.s:95     .text.BusFault_Handler:00000000 BusFault_Handler
+C:\Users\Cairne\AppData\Local\Temp\ccATUBge.s:109    .text.UsageFault_Handler:00000000 $t
+C:\Users\Cairne\AppData\Local\Temp\ccATUBge.s:116    .text.UsageFault_Handler:00000000 UsageFault_Handler
+C:\Users\Cairne\AppData\Local\Temp\ccATUBge.s:130    .text.SVC_Handler:00000000 $t
+C:\Users\Cairne\AppData\Local\Temp\ccATUBge.s:137    .text.SVC_Handler:00000000 SVC_Handler
+C:\Users\Cairne\AppData\Local\Temp\ccATUBge.s:150    .text.DebugMon_Handler:00000000 $t
+C:\Users\Cairne\AppData\Local\Temp\ccATUBge.s:157    .text.DebugMon_Handler:00000000 DebugMon_Handler
+C:\Users\Cairne\AppData\Local\Temp\ccATUBge.s:170    .text.PendSV_Handler:00000000 $t
+C:\Users\Cairne\AppData\Local\Temp\ccATUBge.s:177    .text.PendSV_Handler:00000000 PendSV_Handler
+C:\Users\Cairne\AppData\Local\Temp\ccATUBge.s:190    .text.SysTick_Handler:00000000 $t
+C:\Users\Cairne\AppData\Local\Temp\ccATUBge.s:197    .text.SysTick_Handler:00000000 SysTick_Handler
+C:\Users\Cairne\AppData\Local\Temp\ccATUBge.s:217    .text.EXTI15_10_IRQHandler:00000000 $t
+C:\Users\Cairne\AppData\Local\Temp\ccATUBge.s:224    .text.EXTI15_10_IRQHandler:00000000 EXTI15_10_IRQHandler
+C:\Users\Cairne\AppData\Local\Temp\ccATUBge.s:253    .text.EXTI15_10_IRQHandler:0000001c $d
+C:\Users\Cairne\AppData\Local\Temp\ccATUBge.s:259    .text.DMA2_Stream2_IRQHandler:00000000 $t
+C:\Users\Cairne\AppData\Local\Temp\ccATUBge.s:266    .text.DMA2_Stream2_IRQHandler:00000000 DMA2_Stream2_IRQHandler
+C:\Users\Cairne\AppData\Local\Temp\ccATUBge.s:292    .text.DMA2_Stream2_IRQHandler:00000014 $d
+C:\Users\Cairne\AppData\Local\Temp\ccATUBge.s:298    .text.HAL_TIM_PWM_PulseFinishedCallback:00000000 $t
+C:\Users\Cairne\AppData\Local\Temp\ccATUBge.s:305    .text.HAL_TIM_PWM_PulseFinishedCallback:00000000 HAL_TIM_PWM_PulseFinishedCallback
+C:\Users\Cairne\AppData\Local\Temp\ccATUBge.s:358    .text.HAL_TIM_PWM_PulseFinishedCallback:0000003c $d
+C:\Users\Cairne\AppData\Local\Temp\ccATUBge.s:368    .text.HAL_GPIO_EXTI_Callback:00000000 $t
+C:\Users\Cairne\AppData\Local\Temp\ccATUBge.s:375    .text.HAL_GPIO_EXTI_Callback:00000000 HAL_GPIO_EXTI_Callback
+C:\Users\Cairne\AppData\Local\Temp\ccATUBge.s:528    .text.HAL_GPIO_EXTI_Callback:000000f0 $d
+C:\Users\Cairne\AppData\Local\Temp\ccATUBge.s:542    .bss.delayCnt:00000000 delayCnt
+C:\Users\Cairne\AppData\Local\Temp\ccATUBge.s:543    .bss.delayCnt:00000000 $d
 
 UNDEFINED SYMBOLS
 HAL_RCC_NMI_IRQHandler
